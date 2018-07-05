@@ -10,6 +10,7 @@ import android.support.v4.app.FragmentActivity;
 import android.support.v4.widget.DrawerLayout;
 import android.text.TextUtils;
 import android.util.Log;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
@@ -58,11 +59,11 @@ public class TelephoneActivity  extends FragmentActivity {
     List<ContactInfo> filterContacts;
     ImageView mHead;
     ImageView mExit;
-    TextView mAddText;
-    TextView mCallphone;
+    Button mAddText;
+    Button mCallphone;
 
     //////////////////////begin
-    TextView mScanQrCode;
+    Button mScanQrCode;
     public static final int GET_CODE = 0;
     ////////////////////end
     ContactInfo mContactInfo;
@@ -130,13 +131,13 @@ public class TelephoneActivity  extends FragmentActivity {
         ImageView_menu.setOnClickListener(new MyOnclickListener(this));
         mList = (ListView) this.findViewById(R.id.lst_show_contact);
         mList.setOnItemClickListener(new MListOnItemClickListener(this));
-        mAddText = (TextView) this.findViewById(R.id.txt_add_contact);
+        mAddText = (Button) this.findViewById(R.id.txt_add_contact);
         mAddText.setOnClickListener(new MyOnclickListener(this));
-        mCallphone = (TextView) this.findViewById(R.id.txt_call_phone);
+        mCallphone = (Button) this.findViewById(R.id.txt_call_phone);
         mCallphone.setOnClickListener(new MyOnclickListener(this));
 
         ////////////begin/////
-        mScanQrCode = (TextView) this.findViewById(R.id.txt_scan_QrCode);
+        mScanQrCode = (Button) this.findViewById(R.id.txt_scan_QrCode);
         mScanQrCode.setOnClickListener(new MyOnclickListener(this));
         //////////////end///////////
 

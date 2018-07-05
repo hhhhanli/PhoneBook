@@ -3,25 +3,28 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical" >
-
     <TextView
         android:id="@+id/txt_show_sort1"
           android:layout_width="match_parent"
+        android:layout_marginLeft="25dp"
     android:layout_height="wrap_content"
     android:background="#eee"
     />
 
     <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-
+        android:layout_height="50dp"
+        android:gravity="center_vertical"
+        android:layout_marginLeft="10dp"
         >
 
         <ImageView
             android:id="@+id/img_show_photo1"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:src="@drawable/ic_avatar"
+            android:layout_marginLeft="25dp"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_marginTop="5dp"
+            android:src="@drawable/telephone"
 
             />
 
@@ -29,22 +32,20 @@
             android:id="@+id/txt_show_name1"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_centerVertical="true"
             android:layout_marginLeft="80dp"
-
-            android:paddingTop="20dp"
+            android:layout_marginTop="2dp"
+            android:textSize="20dp"
             android:text="zhangsan" />
 
         <TextView
             android:id="@+id/txt_contact_phone1"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:paddingTop="20dp"
-            android:text="12345556666"
-
-            android:layout_centerVertical="true"
-            android:layout_toEndOf="@+id/txt_show_name1"
-            android:layout_marginStart="32dp" />
+            android:layout_marginLeft="80dp"
+            android:paddingTop="30dp"
+            android:textSize="15dp"
+            android:textColor="@color/blue"
+            android:text="12345556666" />
 
     </RelativeLayout>
 

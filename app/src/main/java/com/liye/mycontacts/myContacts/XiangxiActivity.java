@@ -64,7 +64,57 @@ public class XiangxiActivity extends Activity implements OnClickListener, PopupM
 	public boolean onMenuItemClick(MenuItem item) {
 		switch (item.getItemId()){
 			case R.id.menu1:
-				Toast.makeText(XiangxiActivity.this,"你点击了第一个标签",Toast.LENGTH_LONG).show();
+				Intent editContact = new Intent(XiangxiActivity.this,
+						EditContactActivity.class);
+				editContact.putExtra("contact", contactInfo);
+				startActivity(editContact);
+				break;
+			case R.id.menu2:
+				AlertDialog.Builder builder = new AlertDialog.Builder(this);
+				builder.setTitle("删除");
+				builder.setMessage("确定要删除联系人吗?");
+
+				builder.setPositiveButton("删除",
+						new DialogInterface.OnClickListener() {
+							@Override
+							public void onClick(DialogInterface dialog, int which) {
+
+								mContactsUtil.delete(contactInfo.getContactId());
+								Intent delete = new Intent(XiangxiActivity.this,
+										TelephoneActivity.class);
+								startActivity(delete);
+								finish();
+							}
+						}
+
+				).show();
+
+				builder.setNegativeButton("取消",
+						new DialogInterface.OnClickListener() {
+
+							@Override
+							public void onClick(DialogInterface dialog, int which) {
+
+								finish();
+								// dialog.dismiss();
+							}
+						}).show();
+				break;
+			case R.id.menu3:
+				Intent show_qr = new Intent(XiangxiActivity.this,
+						ShowQrCodeActivity.class);
+				show_qr.putExtra("contact", contactInfo);
+				startActivity(show_qr);
+				break;
+			case R.id.menu4:
+				// 打电话的意图
+				Intent intent = new Intent();
+				// Intent.ACTION_CALL打电话的动作
+				intent.setAction(Intent.ACTION_CALL);
+				// uri统一资源标示符
+				intent.setData(Uri.parse("tel:" + contactInfo.getPhone()));
+				// 开启一个新的界面
+				startActivity(intent);
 				break;
 		}
 		return true;
