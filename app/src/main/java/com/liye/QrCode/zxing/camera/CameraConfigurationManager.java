@@ -60,6 +60,7 @@ final class CameraConfigurationManager {
 
     //图片拉伸
     Point screenResolutionForCamera = new Point();
+    screenResolution.y = screenResolution.y - 400;
     screenResolutionForCamera.x = screenResolution.x;
     screenResolutionForCamera.y = screenResolution.y;
     // preview size is always something like 480*320, other 320*480
