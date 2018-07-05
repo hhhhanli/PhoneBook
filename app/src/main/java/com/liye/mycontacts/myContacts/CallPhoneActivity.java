@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
+import android.text.InputType;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -147,6 +148,7 @@ public class CallPhoneActivity extends Activity {
                 }
             }
         });
+        number.setInputType(InputType.TYPE_NULL);
     }
 
     class MyListener implements View.OnClickListener {
