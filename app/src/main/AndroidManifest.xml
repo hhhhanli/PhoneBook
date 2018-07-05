@@ -39,11 +39,11 @@
         <activity android:name=".menu.TopTabActivity" />
         <activity
             android:name="com.liye.QrCode.zxing.activity.CaptureActivity"
-            android:theme="@style/Theme.AppCompat.Light.DarkActionBar"
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar"
             />
         <activity
             android:name="com.liye.QrCode.zxing.profile.ShowQrCodeActivity"
-            android:theme="@style/Theme.AppCompat.Light.DarkActionBar"
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar"
             />
     </application>
 
