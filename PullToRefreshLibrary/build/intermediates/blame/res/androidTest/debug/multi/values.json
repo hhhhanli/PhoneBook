@@ -1,0 +1,430 @@
+[
+    {
+        "outputFile": "F:\\AndroidCourse\\finalProj\\MyContacts-master\\PullToRefreshLibrary\\build\\intermediates\\incremental\\mergeDebugAndroidTestResources\\merged.dir\\values\\values.xml",
+        "map": [
+            {
+                "to": {
+                    "startLine": 17,
+                    "startColumn": 4,
+                    "startOffset": 1953,
+                    "endColumn": 63,
+                    "endOffset": 2012
+                },
+                "from": {
+                    "file": "F:\\AndroidCourse\\finalProj\\MyContacts-master\\PullToRefreshLibrary\\build\\intermediates\\bundles\\debug\\res\\values\\values.xml",
+                    "position": {
+                        "startLine": 17,
+                        "startColumn": 4,
+                        "startOffset": 1953,
+                        "endColumn": 63,
+                        "endOffset": 2012
+                    }
+                }
+            },
+            {
+                "to": {
+                    "startLine": 18,
+                    "startColumn": 4,
+                    "startOffset": 2017,
+                    "endColumn": 63,
+                    "endOffset": 2076
+                },
+                "from": {
+                    "file": "F:\\AndroidCourse\\finalProj\\MyContacts-master\\PullToRefreshLibrary\\build\\intermediates\\bundles\\debug\\res\\values\\values.xml",
+                    "position": {
+                        "startLine": 18,
+                        "startColumn": 4,
+                        "startOffset": 2017,
+                        "endColumn": 63,
+                        "endOffset": 2076
+                    }
+                }
+            },
+            {
+                "to": {
+                    "startLine": 19,
+                    "startColumn": 4,
+                    "startOffset": 2081,
+                    "endColumn": 54,
+                    "endOffset": 2131
+                },
+                "from": {
+                    "file": "F:\\AndroidCourse\\finalProj\\MyContacts-master\\PullToRefreshLibrary\\build\\intermediates\\bundles\\debug\\res\\values\\values.xml",
+                    "position": {
+                        "startLine": 19,
+                        "startColumn": 4,
+                        "startOffset": 2081,
+                        "endColumn": 54,
+                        "endOffset": 2131
+                    }
+                }
+            },
+            {
+                "to": {
+                    "startLine": 20,
+                    "startColumn": 4,
+                    "startOffset": 2136,
+                    "endColumn": 56,
+                    "endOffset": 2188
+                },
+                "from": {
+                    "file": "F:\\AndroidCourse\\finalProj\\MyContacts-master\\PullToRefreshLibrary\\build\\intermediates\\bundles\\debug\\res\\values\\values.xml",
+                    "position": {
+                        "startLine": 20,
+                        "startColumn": 4,
+                        "startOffset": 2136,
+                        "endColumn": 56,
+                        "endOffset": 2188
+                    }
+                }
+            },
+            {
+                "to": {
+                    "startLine": 21,
+                    "startColumn": 4,
+                    "startOffset": 2193,
+                    "endColumn": 54,
+                    "endOffset": 2243
+                },
+                "from": {
+                    "file": "F:\\AndroidCourse\\finalProj\\MyContacts-master\\PullToRefreshLibrary\\build\\intermediates\\bundles\\debug\\res\\values\\values.xml",
+                    "position": {
+                        "startLine": 21,
+                        "startColumn": 4,
+                        "startOffset": 2193,
+                        "endColumn": 54,
+                        "endOffset": 2243
+                    }
+                }
+            },
+            {
+                "to": {
+                    "startLine": 22,
+                    "startColumn": 4,
+                    "startOffset": 2248,
+                    "endColumn": 37,
+                    "endOffset": 2281
+                },
+                "from": {
+                    "file": "F:\\AndroidCourse\\finalProj\\MyContacts-master\\PullToRefreshLibrary\\build\\intermediates\\bundles\\debug\\res\\values\\values.xml",
+                    "position": {
+                        "startLine": 22,
+                        "startColumn": 4,
+                        "startOffset": 2248,
+                        "endColumn": 37,
+                        "endOffset": 2281
+                    }
+                }
+            },
+            {
+                "to": {
+                    "startLine": 23,
+                    "startColumn": 4,
+                    "startOffset": 2286,
+                    "endColumn": 39,
+                    "endOffset": 2321
+                },
+                "from": {
+                    "file": "F:\\AndroidCourse\\finalProj\\MyContacts-master\\PullToRefreshLibrary\\build\\intermediates\\bundles\\debug\\res\\values\\values.xml",
+                    "position": {
+                        "startLine": 23,
+                        "startColumn": 4,
+                        "startOffset": 2286,
+                        "endColumn": 39,
+                        "endOffset": 2321
+                    }
+                }
+            },
+            {
+                "to": {
+                    "startLine": 24,
+                    "startColumn": 4,
+                    "startOffset": 2326,
+                    "endColumn": 36,
+                    "endOffset": 2358
+                },
+                "from": {
+                    "file": "F:\\AndroidCourse\\finalProj\\MyContacts-master\\PullToRefreshLibrary\\build\\intermediates\\bundles\\debug\\res\\values\\values.xml",
+                    "position": {
+                        "startLine": 24,
+                        "startColumn": 4,
+                        "startOffset": 2326,
+                        "endColumn": 36,
+                        "endOffset": 2358
+                    }
+                }
+            },
+            {
+                "to": {
+                    "startLine": 25,
+                    "startColumn": 4,
+                    "startOffset": 2363,
+                    "endColumn": 62,
+                    "endOffset": 2421
+                },
+                "from": {
+                    "file": "F:\\AndroidCourse\\finalProj\\MyContacts-master\\PullToRefreshLibrary\\build\\intermediates\\bundles\\debug\\res\\values\\values.xml",
+                    "position": {
+                        "startLine": 25,
+                        "startColumn": 4,
+                        "startOffset": 2363,
+                        "endColumn": 62,
+                        "endOffset": 2421
+                    }
+                }
+            },
+            {
+                "to": {
+                    "startLine": 26,
+                    "startColumn": 4,
+                    "startOffset": 2426,
+                    "endColumn": 68,
+                    "endOffset": 2490
+                },
+                "from": {
+                    "file": "F:\\AndroidCourse\\finalProj\\MyContacts-master\\PullToRefreshLibrary\\build\\intermediates\\bundles\\debug\\res\\values\\values.xml",
+                    "position": {
+                        "startLine": 26,
+                        "startColumn": 4,
+                        "startOffset": 2426,
+                        "endColumn": 68,
+                        "endOffset": 2490
+                    }
+                }
+            },
+            {
+                "to": {
+                    "startLine": 27,
+                    "startColumn": 4,
+                    "startOffset": 2495,
+                    "endColumn": 66,
+                    "endOffset": 2557
+                },
+                "from": {
+                    "file": "F:\\AndroidCourse\\finalProj\\MyContacts-master\\PullToRefreshLibrary\\build\\intermediates\\bundles\\debug\\res\\values\\values.xml",
+                    "position": {
+                        "startLine": 27,
+                        "startColumn": 4,
+                        "startOffset": 2495,
+                        "endColumn": 66,
+                        "endOffset": 2557
+                    }
+                }
+            }
+        ]
+    },
+    {
+        "outputFile": "C:\\Users\\zhanh\\Desktop\\finalproj_v1\\MyContacts-master\\PullToRefreshLibrary\\build\\intermediates\\incremental\\mergeDebugAndroidTestResources\\merged.dir\\values\\values.xml",
+        "map": [
+            {
+                "to": {
+                    "startLine": 17,
+                    "startColumn": 4,
+                    "startOffset": 1953,
+                    "endColumn": 63,
+                    "endOffset": 2012
+                },
+                "from": {
+                    "file": "C:\\Users\\zhanh\\Desktop\\finalproj_v1\\MyContacts-master\\PullToRefreshLibrary\\build\\intermediates\\bundles\\debug\\res\\values\\values.xml",
+                    "position": {
+                        "startLine": 17,
+                        "startColumn": 4,
+                        "startOffset": 1953,
+                        "endColumn": 63,
+                        "endOffset": 2012
+                    }
+                }
+            },
+            {
+                "to": {
+                    "startLine": 18,
+                    "startColumn": 4,
+                    "startOffset": 2017,
+                    "endColumn": 63,
+                    "endOffset": 2076
+                },
+                "from": {
+                    "file": "C:\\Users\\zhanh\\Desktop\\finalproj_v1\\MyContacts-master\\PullToRefreshLibrary\\build\\intermediates\\bundles\\debug\\res\\values\\values.xml",
+                    "position": {
+                        "startLine": 18,
+                        "startColumn": 4,
+                        "startOffset": 2017,
+                        "endColumn": 63,
+                        "endOffset": 2076
+                    }
+                }
+            },
+            {
+                "to": {
+                    "startLine": 19,
+                    "startColumn": 4,
+                    "startOffset": 2081,
+                    "endColumn": 54,
+                    "endOffset": 2131
+                },
+                "from": {
+                    "file": "C:\\Users\\zhanh\\Desktop\\finalproj_v1\\MyContacts-master\\PullToRefreshLibrary\\build\\intermediates\\bundles\\debug\\res\\values\\values.xml",
+                    "position": {
+                        "startLine": 19,
+                        "startColumn": 4,
+                        "startOffset": 2081,
+                        "endColumn": 54,
+                        "endOffset": 2131
+                    }
+                }
+            },
+            {
+                "to": {
+                    "startLine": 20,
+                    "startColumn": 4,
+                    "startOffset": 2136,
+                    "endColumn": 56,
+                    "endOffset": 2188
+                },
+                "from": {
+                    "file": "C:\\Users\\zhanh\\Desktop\\finalproj_v1\\MyContacts-master\\PullToRefreshLibrary\\build\\intermediates\\bundles\\debug\\res\\values\\values.xml",
+                    "position": {
+                        "startLine": 20,
+                        "startColumn": 4,
+                        "startOffset": 2136,
+                        "endColumn": 56,
+                        "endOffset": 2188
+                    }
+                }
+            },
+            {
+                "to": {
+                    "startLine": 21,
+                    "startColumn": 4,
+                    "startOffset": 2193,
+                    "endColumn": 54,
+                    "endOffset": 2243
+                },
+                "from": {
+                    "file": "C:\\Users\\zhanh\\Desktop\\finalproj_v1\\MyContacts-master\\PullToRefreshLibrary\\build\\intermediates\\bundles\\debug\\res\\values\\values.xml",
+                    "position": {
+                        "startLine": 21,
+                        "startColumn": 4,
+                        "startOffset": 2193,
+                        "endColumn": 54,
+                        "endOffset": 2243
+                    }
+                }
+            },
+            {
+                "to": {
+                    "startLine": 22,
+                    "startColumn": 4,
+                    "startOffset": 2248,
+                    "endColumn": 37,
+                    "endOffset": 2281
+                },
+                "from": {
+                    "file": "C:\\Users\\zhanh\\Desktop\\finalproj_v1\\MyContacts-master\\PullToRefreshLibrary\\build\\intermediates\\bundles\\debug\\res\\values\\values.xml",
+                    "position": {
+                        "startLine": 22,
+                        "startColumn": 4,
+                        "startOffset": 2248,
+                        "endColumn": 37,
+                        "endOffset": 2281
+                    }
+                }
+            },
+            {
+                "to": {
+                    "startLine": 23,
+                    "startColumn": 4,
+                    "startOffset": 2286,
+                    "endColumn": 39,
+                    "endOffset": 2321
+                },
+                "from": {
+                    "file": "C:\\Users\\zhanh\\Desktop\\finalproj_v1\\MyContacts-master\\PullToRefreshLibrary\\build\\intermediates\\bundles\\debug\\res\\values\\values.xml",
+                    "position": {
+                        "startLine": 23,
+                        "startColumn": 4,
+                        "startOffset": 2286,
+                        "endColumn": 39,
+                        "endOffset": 2321
+                    }
+                }
+            },
+            {
+                "to": {
+                    "startLine": 24,
+                    "startColumn": 4,
+                    "startOffset": 2326,
+                    "endColumn": 36,
+                    "endOffset": 2358
+                },
+                "from": {
+                    "file": "C:\\Users\\zhanh\\Desktop\\finalproj_v1\\MyContacts-master\\PullToRefreshLibrary\\build\\intermediates\\bundles\\debug\\res\\values\\values.xml",
+                    "position": {
+                        "startLine": 24,
+                        "startColumn": 4,
+                        "startOffset": 2326,
+                        "endColumn": 36,
+                        "endOffset": 2358
+                    }
+                }
+            },
+            {
+                "to": {
+                    "startLine": 25,
+                    "startColumn": 4,
+                    "startOffset": 2363,
+                    "endColumn": 62,
+                    "endOffset": 2421
+                },
+                "from": {
+                    "file": "C:\\Users\\zhanh\\Desktop\\finalproj_v1\\MyContacts-master\\PullToRefreshLibrary\\build\\intermediates\\bundles\\debug\\res\\values\\values.xml",
+                    "position": {
+                        "startLine": 25,
+                        "startColumn": 4,
+                        "startOffset": 2363,
+                        "endColumn": 62,
+                        "endOffset": 2421
+                    }
+                }
+            },
+            {
+                "to": {
+                    "startLine": 26,
+                    "startColumn": 4,
+                    "startOffset": 2426,
+                    "endColumn": 68,
+                    "endOffset": 2490
+                },
+                "from": {
+                    "file": "C:\\Users\\zhanh\\Desktop\\finalproj_v1\\MyContacts-master\\PullToRefreshLibrary\\build\\intermediates\\bundles\\debug\\res\\values\\values.xml",
+                    "position": {
+                        "startLine": 26,
+                        "startColumn": 4,
+                        "startOffset": 2426,
+                        "endColumn": 68,
+                        "endOffset": 2490
+                    }
+                }
+            },
+            {
+                "to": {
+                    "startLine": 27,
+                    "startColumn": 4,
+                    "startOffset": 2495,
+                    "endColumn": 66,
+                    "endOffset": 2557
+                },
+                "from": {
+                    "file": "C:\\Users\\zhanh\\Desktop\\finalproj_v1\\MyContacts-master\\PullToRefreshLibrary\\build\\intermediates\\bundles\\debug\\res\\values\\values.xml",
+                    "position": {
+                        "startLine": 27,
+                        "startColumn": 4,
+                        "startOffset": 2495,
+                        "endColumn": 66,
+                        "endOffset": 2557
+                    }
+                }
+            }
+        ]
+    }
+]
