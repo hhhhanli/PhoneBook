@@ -8,10 +8,14 @@ import android.graphics.Bitmap;
 import android.net.Uri;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.ImageView;
+import android.widget.PopupMenu;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.liye.QrCode.zxing.profile.ShowQrCodeActivity;
 import com.liye.mycontacts.R;
@@ -22,9 +26,10 @@ import com.liye.mycontacts.utils.ContactsUtil;
 
 import java.util.List;
 
-public class XiangxiActivity extends Activity implements OnClickListener {
+public class XiangxiActivity extends Activity implements OnClickListener, PopupMenu.OnMenuItemClickListener{
 	TextView mReturn;
 	ImageView mIcon;
+	private PopupMenu popupMenu;
 	TextView mName, mPhone, mEmail, mAddress, mCallPhone;
 	ContactsUtil mContactsUtil;
 	List<ContactInfo> contacts;
@@ -43,6 +48,26 @@ public class XiangxiActivity extends Activity implements OnClickListener {
 //				contactInfo + " contactInfo=" + contactInfo.getAddress());
 		initData();
 
+	}
+
+	public void show(View v){
+		//实例化一个弹出式菜单，传入上下文和控件
+		popupMenu = new PopupMenu(this,v);
+		//根据菜单填充器获得菜单的布局
+		popupMenu.getMenuInflater().inflate(R.menu.menu_a,popupMenu.getMenu());
+		//设置菜单的点击事件
+		popupMenu.setOnMenuItemClickListener(this);
+		//显示菜单
+		popupMenu.show();
+	}
+	@Override
+	public boolean onMenuItemClick(MenuItem item) {
+		switch (item.getItemId()){
+			case R.id.menu1:
+				Toast.makeText(XiangxiActivity.this,"你点击了第一个标签",Toast.LENGTH_LONG).show();
+				break;
+		}
+		return true;
 	}
 
 	public void initData() {
