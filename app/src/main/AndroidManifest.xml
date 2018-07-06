@@ -22,7 +22,9 @@
         android:label="电话薄"
         android:supportsRtl="true"
         android:theme="@android:style/Theme.Holo.Light.NoActionBar.Fullscreen">
-        <activity android:name="com.liye.mycontacts.menu.TelephoneActivity">
+        <activity android:name="com.liye.mycontacts.menu.TelephoneActivity"
+            android:windowSoftInputMode="adjustUnspecified|stateHidden"
+            android:configChanges="orientation|keyboardHidden">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -30,12 +32,14 @@
             </intent-filter>
         </activity>
 
-        <activity android:name=".myContacts.XiangxiActivity"></activity>
+        <activity android:name=".myContacts.XiangxiActivity"
+            android:windowSoftInputMode="adjustUnspecified|stateHidden"
+            android:configChanges="orientation|keyboardHidden">
+        </activity>
         <activity android:name=".myContacts.EditContactActivity"></activity>
         <activity android:name=".myContacts.AddPeopleActivity"></activity>
         <activity android:name=".myContacts.CallPhoneActivity"></activity>
         <activity android:name=".menu.RegisterActivity"></activity>
-
         <activity android:name=".menu.TopTabActivity" />
         <activity
             android:name="com.liye.QrCode.zxing.activity.CaptureActivity"
