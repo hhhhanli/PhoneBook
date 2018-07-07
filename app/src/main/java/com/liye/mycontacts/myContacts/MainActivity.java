@@ -56,7 +56,8 @@ public class MainActivity extends ActionBarActivity implements OnClickListener {
         adapter = new TabFragmentPagerAdapter(getSupportFragmentManager(), list);
         myViewPager.setAdapter(adapter);
         myViewPager.setCurrentItem(0);  //初始化显示第一个页面
-        tv_item_one.setBackgroundColor(Color.RED);//被选中就为红色
+        tv_item_one.setBackgroundColor(Color.WHITE);//被选中就为红色
+        tv_item_one.setTextColor(Color.rgb(128,128,128));
     }
 
     /**
@@ -77,21 +78,30 @@ public class MainActivity extends ActionBarActivity implements OnClickListener {
         switch (v.getId()) {
             case R.id.tv_item_one:
                 myViewPager.setCurrentItem(0);
-                tv_item_one.setBackgroundColor(Color.RED);
-                tv_item_two.setBackgroundColor(Color.WHITE);
-                tv_item_three.setBackgroundColor(Color.WHITE);
+                tv_item_one.setBackgroundColor(Color.WHITE);
+                tv_item_two.setBackgroundColor(Color.rgb(44,162,192));
+                tv_item_three.setBackgroundColor(Color.rgb(44,162,192));
+                tv_item_one.setTextColor(Color.rgb(128,128,128));
+                tv_item_two.setTextColor(Color.WHITE);
+                tv_item_three.setTextColor(Color.WHITE);
                 break;
             case R.id.tv_item_two:
                 myViewPager.setCurrentItem(1);
-                tv_item_one.setBackgroundColor(Color.WHITE);
-                tv_item_two.setBackgroundColor(Color.RED);
-                tv_item_three.setBackgroundColor(Color.WHITE);
+                tv_item_one.setBackgroundColor(Color.rgb(44,162,192));
+                tv_item_two.setBackgroundColor(Color.WHITE);
+                tv_item_three.setBackgroundColor(Color.rgb(44,162,192));
+                tv_item_two.setTextColor(Color.rgb(128,128,128));
+                tv_item_one.setTextColor(Color.WHITE);
+                tv_item_three.setTextColor(Color.WHITE);
                 break;
             case R.id.tv_item_three:
                 myViewPager.setCurrentItem(2);
-                tv_item_one.setBackgroundColor(Color.WHITE);
-                tv_item_two.setBackgroundColor(Color.WHITE);
-                tv_item_three.setBackgroundColor(Color.RED);
+                tv_item_one.setBackgroundColor(Color.rgb(44,162,192));
+                tv_item_two.setBackgroundColor(Color.rgb(44,162,192));
+                tv_item_three.setBackgroundColor(Color.WHITE);
+                tv_item_three.setTextColor(Color.rgb(128,128,128));
+                tv_item_one.setTextColor(Color.WHITE);
+                tv_item_two.setTextColor(Color.WHITE);
                 break;
         }
     }
@@ -114,19 +124,28 @@ public class MainActivity extends ActionBarActivity implements OnClickListener {
         public void onPageSelected(int arg0) {
             switch (arg0) {
                 case 0:
-                    tv_item_one.setBackgroundColor(Color.RED);
-                    tv_item_two.setBackgroundColor(Color.WHITE);
-                    tv_item_three.setBackgroundColor(Color.WHITE);
+                    tv_item_one.setBackgroundColor(Color.WHITE);
+                    tv_item_two.setBackgroundColor(Color.rgb(44,162,192));
+                    tv_item_three.setBackgroundColor(Color.rgb(44,162,192));
+                    tv_item_one.setTextColor(Color.rgb(128,128,128));
+                    tv_item_two.setTextColor(Color.WHITE);
+                    tv_item_three.setTextColor(Color.WHITE);
                     break;
                 case 1:
-                    tv_item_one.setBackgroundColor(Color.WHITE);
-                    tv_item_two.setBackgroundColor(Color.RED);
-                    tv_item_three.setBackgroundColor(Color.WHITE);
+                    tv_item_one.setBackgroundColor(Color.rgb(44,162,192));
+                    tv_item_two.setBackgroundColor(Color.WHITE);
+                    tv_item_three.setBackgroundColor(Color.rgb(44,162,192));
+                    tv_item_two.setTextColor(Color.rgb(128,128,128));
+                    tv_item_one.setTextColor(Color.WHITE);
+                    tv_item_three.setTextColor(Color.WHITE);
                     break;
                 case 2:
-                    tv_item_one.setBackgroundColor(Color.WHITE);
-                    tv_item_two.setBackgroundColor(Color.WHITE);
-                    tv_item_three.setBackgroundColor(Color.RED);
+                    tv_item_one.setBackgroundColor(Color.rgb(44,162,192));
+                    tv_item_two.setBackgroundColor(Color.rgb(44,162,192));
+                    tv_item_three.setBackgroundColor(Color.WHITE);
+                    tv_item_three.setTextColor(Color.rgb(128,128,128));
+                    tv_item_one.setTextColor(Color.WHITE);
+                    tv_item_two.setTextColor(Color.WHITE);
                     break;
             }
         }

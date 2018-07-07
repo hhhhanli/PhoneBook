@@ -10,31 +10,42 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="horizontal" >
+        android:gravity="center_vertical"
+        android:orientation="horizontal"
+        android:weightSum="3.0">
 
         <TextView
             android:id="@+id/tv_item_one"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="fill_parent"
+            android:layout_height="40dp"
+            android:textSize="17dp"
             android:layout_weight="1"
-            android:gravity="center_horizontal"
-            android:text="菜单一" />
+            android:gravity="center"
+            android:background="#2CA2C0"
+            android:textColor="@color/white"
+            android:text="电话簿" />
 
         <TextView
             android:id="@+id/tv_item_two"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="fill_parent"
+            android:layout_height="40dp"
+            android:textSize="17dp"
             android:layout_weight="1"
-            android:gravity="center_horizontal"
-            android:text="菜单二" />
+            android:gravity="center"
+            android:background="#2CA2C0"
+            android:textColor="@color/white"
+            android:text="通话记录" />
 
         <TextView
             android:id="@+id/tv_item_three"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="fill_parent"
+            android:layout_height="40dp"
+            android:textSize="17dp"
             android:layout_weight="1"
-            android:gravity="center_horizontal"
-            android:text="菜单三" />
+            android:gravity="center"
+            android:background="#2CA2C0"
+            android:textColor="@color/white"
+            android:text="我的通话" />
     </LinearLayout>
 
     <android.support.v4.view.ViewPager
