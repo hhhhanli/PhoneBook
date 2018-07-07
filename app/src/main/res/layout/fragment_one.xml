@@ -9,7 +9,7 @@
         android:id="@+id/content"
         android:layout_width="fill_parent"
         android:layout_height="fill_parent"
-        android:layout_marginTop="20dp">
+        android:layout_marginTop="0dp">
 
         <com.liye.mycontacts.myContacts.SearchEditText
             android:id="@+id/edt_search"
