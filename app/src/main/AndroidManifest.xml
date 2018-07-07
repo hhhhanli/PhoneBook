@@ -24,7 +24,7 @@
         android:theme="@android:style/Theme.Holo.Light.NoActionBar.Fullscreen">
         <activity android:name="com.liye.mycontacts.myContacts.MainActivity"
             android:theme="@style/Theme.AppCompat.Light.NoActionBar"
-            android:windowSoftInputMode="adjustUnspecified|stateHidden"
+            android:windowSoftInputMode="adjustUnspecified|stateHidden|adjustPan"
             android:configChanges="orientation|keyboardHidden">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

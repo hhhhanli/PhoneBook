@@ -3,24 +3,30 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical" >
-    <TextView
-        android:id="@+id/txt_show_sort1"
-          android:layout_width="match_parent"
-        android:layout_marginLeft="25dp"
-    android:layout_height="wrap_content"
-    android:background="#eee"
-    />
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="#eee">
+        <TextView
+            android:id="@+id/txt_show_sort1"
+            android:layout_width="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:layout_height="wrap_content"
+            />
+    </RelativeLayout>
+
+
 
     <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="50dp"
+        android:layout_height="60dp"
         android:gravity="center_vertical"
         android:layout_marginLeft="10dp"
         >
 
         <ImageView
             android:id="@+id/img_show_photo1"
-            android:layout_marginLeft="25dp"
+            android:layout_marginLeft="15dp"
             android:layout_width="40dp"
             android:layout_height="40dp"
             android:layout_marginTop="5dp"
@@ -32,7 +38,7 @@
             android:id="@+id/txt_show_name1"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="80dp"
+            android:layout_marginLeft="70dp"
             android:layout_marginTop="2dp"
             android:textSize="20dp"
             android:text="zhangsan" />
@@ -41,7 +47,7 @@
             android:id="@+id/txt_contact_phone1"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="80dp"
+            android:layout_marginLeft="70dp"
             android:paddingTop="30dp"
             android:textSize="15dp"
             android:textColor="@color/blue"
