@@ -8,12 +8,28 @@
         "source": "C:\\Users\\zhanh\\Desktop\\finalproj_v1\\MyContacts-master\\PullToRefreshLibrary\\build\\intermediates\\bundles\\debug\\res\\anim\\slide_in_from_top.xml"
     },
     {
+        "merged": "C:\\Users\\dell-pc\\Desktop\\PhoneBook\\PullToRefreshLibrary\\build\\intermediates\\res\\merged\\androidTest\\debug\\anim\\slide_out_to_bottom.xml",
+        "source": "C:\\Users\\dell-pc\\Desktop\\PhoneBook\\PullToRefreshLibrary\\build\\intermediates\\bundles\\debug\\res\\anim\\slide_out_to_bottom.xml"
+    },
+    {
+        "merged": "C:\\Users\\dell-pc\\Desktop\\PhoneBook\\PullToRefreshLibrary\\build\\intermediates\\res\\merged\\androidTest\\debug\\anim\\slide_in_from_top.xml",
+        "source": "C:\\Users\\dell-pc\\Desktop\\PhoneBook\\PullToRefreshLibrary\\build\\intermediates\\bundles\\debug\\res\\anim\\slide_in_from_top.xml"
+    },
+    {
         "merged": "F:\\AndroidCourse\\finalProj\\MyContacts-master\\PullToRefreshLibrary\\build\\intermediates\\res\\merged\\androidTest\\debug\\anim\\slide_in_from_bottom.xml",
         "source": "F:\\AndroidCourse\\finalProj\\MyContacts-master\\PullToRefreshLibrary\\build\\intermediates\\bundles\\debug\\res\\anim\\slide_in_from_bottom.xml"
     },
     {
         "merged": "F:\\AndroidCourse\\finalProj\\MyContacts-master\\PullToRefreshLibrary\\build\\intermediates\\res\\merged\\androidTest\\debug\\anim\\slide_out_to_bottom.xml",
         "source": "F:\\AndroidCourse\\finalProj\\MyContacts-master\\PullToRefreshLibrary\\build\\intermediates\\bundles\\debug\\res\\anim\\slide_out_to_bottom.xml"
+    },
+    {
+        "merged": "C:\\Users\\dell-pc\\Desktop\\PhoneBook\\PullToRefreshLibrary\\build\\intermediates\\res\\merged\\androidTest\\debug\\anim\\slide_out_to_top.xml",
+        "source": "C:\\Users\\dell-pc\\Desktop\\PhoneBook\\PullToRefreshLibrary\\build\\intermediates\\bundles\\debug\\res\\anim\\slide_out_to_top.xml"
+    },
+    {
+        "merged": "C:\\Users\\dell-pc\\Desktop\\PhoneBook\\PullToRefreshLibrary\\build\\intermediates\\res\\merged\\androidTest\\debug\\anim\\slide_in_from_bottom.xml",
+        "source": "C:\\Users\\dell-pc\\Desktop\\PhoneBook\\PullToRefreshLibrary\\build\\intermediates\\bundles\\debug\\res\\anim\\slide_in_from_bottom.xml"
     },
     {
         "merged": "F:\\AndroidCourse\\finalProj\\MyContacts-master\\PullToRefreshLibrary\\build\\intermediates\\res\\merged\\androidTest\\debug\\anim\\slide_in_from_top.xml",
