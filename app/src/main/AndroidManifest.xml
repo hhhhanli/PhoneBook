@@ -16,7 +16,19 @@
     <uses-feature android:name="android.hardware.camera.autofocus" /> <!-- 自动聚焦权限 -->
     <uses-permission android:name="android.permission.FLASHLIGHT" />
     <uses-permission android:name="android.permission.CAMERA" /> <!--闪光灯-->
+
+
+    <uses-feature
+        android:name="android.hardware.microphone"
+        android:required="false"/>
+    <uses-permission android:name="android.permission.RECORD_AUDIO"/>
+    <uses-permission android:name="android.permission.MODIFY_AUDIO_SETTINGS"/>
+    <uses-permission android:name="android.permission.READ_PHONE_STATE"/>
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
+    <uses-permission android:name="android.permission.READ_PHONE_STATE"/>
+
     <application
+        android:name="com.liye.onlineVoice.GlobalApplication"
         android:allowBackup="true"
         android:icon="@drawable/pink_design_11"
         android:label="电话薄"
@@ -47,6 +59,10 @@
             />
         <activity
             android:name="com.liye.QrCode.zxing.profile.ShowQrCodeActivity"
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar"
+            />
+        <activity
+            android:name="com.liye.onlineVoice.VoiceControlActivity"
             android:theme="@style/Theme.AppCompat.Light.NoActionBar"
             />
     </application>

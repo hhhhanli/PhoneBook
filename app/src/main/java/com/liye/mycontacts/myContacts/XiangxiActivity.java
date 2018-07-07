@@ -2,11 +2,13 @@ package com.liye.mycontacts.myContacts;
 
 import android.app.Activity;
 import android.app.AlertDialog;
+import android.app.Application;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.net.Uri;
 import android.os.Bundle;
+import android.os.Looper;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -23,6 +25,9 @@ import com.liye.mycontacts.menu.TelephoneActivity;
 import com.liye.mycontacts.utils.CommonUtil;
 import com.liye.mycontacts.utils.ContactInfo;
 import com.liye.mycontacts.utils.ContactsUtil;
+import com.liye.onlineVoice.GlobalApplication;
+import com.liye.onlineVoice.OnlineVoiceManager;
+import com.liye.onlineVoice.VoiceControlActivity;
 
 import java.util.List;
 
@@ -34,7 +39,7 @@ public class XiangxiActivity extends Activity implements OnClickListener, PopupM
 	ContactsUtil mContactsUtil;
 	List<ContactInfo> contacts;
 	////////////////begin
-	TextView mEditContact, mDeleteContact, mSendDesk,mShowQrCode;
+	TextView mEditContact, mDeleteContact, mSendDesk,mShowQrCode,mOnlineVoice;
 	//////////////end
 	ContactInfo contactInfo;
 
@@ -138,6 +143,7 @@ public class XiangxiActivity extends Activity implements OnClickListener, PopupM
 		mAddress = (TextView) this.findViewById(R.id.txt_show_address3);
 		mAddress.setText(contactInfo.getAddress());
 
+
 		mEditContact = (TextView) this.findViewById(R.id.edit_contact3);
 		mEditContact.setOnClickListener(this);
 		mDeleteContact = (TextView) this.findViewById(R.id.delete_contact3);
@@ -153,6 +159,11 @@ public class XiangxiActivity extends Activity implements OnClickListener, PopupM
 		mCallPhone = (TextView) this.findViewById(R.id.callPhone);
 		mCallPhone.setOnClickListener(this);
 		mContactsUtil = new ContactsUtil(this);
+
+
+		mOnlineVoice = (TextView)this.findViewById(R.id.online_vioce);
+		mOnlineVoice.setOnClickListener(this);
+
 
 	}
 
@@ -208,28 +219,17 @@ public class XiangxiActivity extends Activity implements OnClickListener, PopupM
 				show_qr.putExtra("contact", contactInfo);
 				startActivity(show_qr);
 				break;
-//			case R.id.send_desk3:
-//				// 发送到桌面
-//				Intent send = new Intent(
-//						"com.android.launcher.action.INSTALL_SHORTCUT");
-//				// 快捷方式 图标 名字
-//				// 图标
-//				send.putExtra(Intent.EXTRA_SHORTCUT_ICON_RESOURCE, R.drawable.t4);
-//				// 名字
-//				send.putExtra(Intent.EXTRA_SHORTCUT_NAME, "");
-//				Intent handle = XiangxiActivity.this.getPackageManager()
-//						.getLaunchIntentForPackage(
-//								XiangxiActivity.this.getPackageName());
-//				// 点击快捷方式---->处理的事情
-//				//Intent handle = new Intent(Intent.ACTION_CALL);
-//				send.putExtra(Intent.EXTRA_SHORTCUT_INTENT, handle);
-//
-//				sendBroadcast(send);
-//
-//				Toast.makeText(getApplicationContext(), "桌面的快捷方式添加完成",
-//						Toast.LENGTH_LONG).show();
-//
-//				break;
+			case R.id.online_vioce:
+				if(GlobalApplication.isLogin){
+					if(! OnlineVoiceManager.getInstance().call_up(contactInfo) ){
+						Toast.makeText(XiangxiActivity.this,"对方未上线",Toast.LENGTH_SHORT).show();
+					}
+				}else{
+					Toast.makeText(XiangxiActivity.this,"请先打开网络电话功能",Toast.LENGTH_SHORT).show();;
+				}
+
+				break;
+
 			case R.id.callPhone:
 				// 打电话的意图
 				Intent intent = new Intent();

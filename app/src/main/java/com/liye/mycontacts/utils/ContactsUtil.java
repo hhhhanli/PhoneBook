@@ -20,6 +20,7 @@ import android.provider.ContactsContract.CommonDataKinds.StructuredName;
 import android.provider.ContactsContract.Contacts;
 import android.provider.ContactsContract.Data;
 import android.provider.ContactsContract.RawContacts;
+import android.util.Log;
 
 import com.liye.mycontacts.R;
 
@@ -236,6 +237,59 @@ public class ContactsUtil {
 			e.printStackTrace();
 		}
 	}
+
+	public ContactInfo findContactInfo(String phone){
+		phone = phone.replace(" ","");
+		Cursor contactsCursor = mContentResolver.query(
+				ContactsContract.Contacts.CONTENT_URI, null, null, null, null);
+
+		for (int i = 0; i < contactsCursor.getCount(); i++) {
+			contactsCursor.moveToPosition(i);
+			// 联系人的id
+			int contactId = contactsCursor.getInt(contactsCursor
+					.getColumnIndex(ContactsContract.Contacts._ID));
+			// raw_contacts
+			Cursor rawCuror = mContentResolver.query(
+					ContactsContract.RawContacts.CONTENT_URI, null,
+					RawContacts.CONTACT_ID + "=?", new String[]{contactId
+							+ ""}, null);
+
+			for (int j = 0; j < rawCuror.getCount(); j++) {
+
+				rawCuror.moveToPosition(j);
+				int rawContactId = rawCuror.getInt(rawCuror
+						.getColumnIndex(RawContacts._ID));
+
+				ContactInfo contact = new ContactInfo();
+				contact.setContactId(contactId);
+				contact.setRawContactId(rawContactId);
+				// 获取联系人的头像
+				getIconByContactId(contactId, contact);
+				// 根据id获取联系人的名字
+				getContactName(rawContactId, contact);
+				// 获取手机号码
+				getContactPhone(rawContactId, contact);
+				// 获取邮箱
+				getContactEamil(rawContactId, contact);
+				// 获取地址
+				getContactAddress(rawContactId, contact);
+				//	Log.e(this + "", "contact=" + contact);
+				// 将联系人添加到集合里
+
+				String curr_phone = contact.getPhone();
+				if( curr_phone != null  && phone.equals(contact.getPhone().replace(" ",""))) {
+					rawCuror.close();
+					contactsCursor.close();
+					return contact;
+				}
+			}
+			rawCuror.close();
+		}
+		// 关闭游标
+		contactsCursor.close();
+		return null;
+
+	}
 	/*
 	 * 查询联系人
 	 */
@@ -245,6 +299,7 @@ public class ContactsUtil {
 		//拿到联系人的全部信息
 		Cursor contactsCursor = mContentResolver.query(
 				ContactsContract.Contacts.CONTENT_URI, null, null, null, null);
+
 		for (int i = 0; i < contactsCursor.getCount(); i++) {
 			contactsCursor.moveToPosition(i);
 			// 联系人的id

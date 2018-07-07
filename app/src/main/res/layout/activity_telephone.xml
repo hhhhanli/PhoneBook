@@ -101,6 +101,12 @@
                     android:layout_marginBottom="5dp"
                     />
 
+                <Switch
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/online_voice_switch" />
+
+
             </LinearLayout>
         </LinearLayout>
 

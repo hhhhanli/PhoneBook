@@ -53,7 +53,6 @@ public class ShowQrCodeActivity extends Activity implements OnClickListener{
 
     @Override
     public void onClick(View v) {
-        Log.d("yesss",""+v.getId());
         switch (v.getId()){
             case R.id.QR_comeback:
                 finish();
