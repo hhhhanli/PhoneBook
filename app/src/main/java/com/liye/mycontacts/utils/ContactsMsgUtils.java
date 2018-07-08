@@ -16,6 +16,7 @@ import java.util.List;
 public class ContactsMsgUtils {
     Context mContext;
     ContentResolver mContentResolver;
+    String name;
 
     public ContactsMsgUtils(Context context) {
         this.mContext = context;
@@ -25,6 +26,10 @@ public class ContactsMsgUtils {
     /*
      * 查询通话记录
      */
+    public void setName(String name) {
+        this.name = name;
+    }
+
     public List<CallLogInfo> select() {
         List<CallLogInfo> infos = new ArrayList<CallLogInfo>();
         Uri uri = CallLog.Calls.CONTENT_URI;
@@ -38,9 +43,12 @@ public class ContactsMsgUtils {
             String name = cursor.getString(3);
             long calltime = cursor.getLong(4);
             infos.add(new CallLogInfo(number, date, type, name, calltime));
-            System.out.println(number + " " + date + " " + type + " " + name + " " + calltime);
         }
         cursor.close();
         return infos;
+    }
+
+    public List<CallLogInfo> pe_select() {
+        List<CallLogInfo> infos = new ArrayList<CallLogInfo>();
     }
 }

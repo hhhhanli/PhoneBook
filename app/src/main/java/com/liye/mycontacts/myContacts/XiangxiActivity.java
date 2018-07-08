@@ -6,9 +6,15 @@ import android.app.Application;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Bitmap;
+import android.graphics.Color;
 import android.net.Uri;
 import android.os.Bundle;
+
+import android.support.v4.app.Fragment;
+import android.support.v4.view.ViewPager;
+import android.support.v7.app.ActionBarActivity;
 import android.os.Looper;
+
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -29,19 +35,30 @@ import com.liye.onlineVoice.GlobalApplication;
 import com.liye.onlineVoice.OnlineVoiceManager;
 import com.liye.onlineVoice.VoiceControlActivity;
 
+import java.util.ArrayList;
 import java.util.List;
 
-public class XiangxiActivity extends Activity implements OnClickListener, PopupMenu.OnMenuItemClickListener{
+public class XiangxiActivity extends ActionBarActivity implements OnClickListener, PopupMenu.OnMenuItemClickListener{
 	TextView mReturn;
 	ImageView mIcon;
 	private PopupMenu popupMenu;
-	TextView mName, mPhone, mEmail, mAddress, mCallPhone;
+	TextView mName;
 	ContactsUtil mContactsUtil;
-	List<ContactInfo> contacts;
 	////////////////begin
-	TextView mEditContact, mDeleteContact, mSendDesk,mShowQrCode,mOnlineVoice;
+
+
+//	TextView mEditContact, mDeleteContact, mSendDesk,mShowQrCode;
+
 	//////////////end
 	ContactInfo contactInfo;
+
+	private TextView pe_item_one;
+	private TextView pe_item_two;
+	private ViewPager peViewPager;
+	private XiangxiFirst oneFragment;
+	private XiangxiSecond twoFragment;
+	private List<Fragment> list;
+	private TabFragmentPagerAdapter adapter;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -52,7 +69,23 @@ public class XiangxiActivity extends Activity implements OnClickListener, PopupM
 //		Log.e(this + "",
 //				contactInfo + " contactInfo=" + contactInfo.getAddress());
 		initData();
+		pe_item_one.setOnClickListener(this);
+		pe_item_two.setOnClickListener(this);
+		peViewPager.setOnPageChangeListener(new XiangxiActivity.MyPagerChangeListener());
 
+		list = new ArrayList<>();
+		oneFragment = new XiangxiFirst();
+		twoFragment = new XiangxiSecond();
+		oneFragment.SetContext(this);
+		oneFragment.setcon(contactInfo);
+		twoFragment.SetContext(this);
+		list.add(oneFragment);
+		list.add(twoFragment);
+		adapter = new TabFragmentPagerAdapter(getSupportFragmentManager(), list);
+		peViewPager.setAdapter(adapter);
+		peViewPager.setCurrentItem(0);  //初始化显示第一个页面
+		pe_item_one.setBackgroundColor(Color.WHITE);
+		pe_item_one.setTextColor(Color.rgb(128,128,128));
 	}
 
 	public void show(View v){
@@ -134,35 +167,40 @@ public class XiangxiActivity extends Activity implements OnClickListener, PopupM
 		Bitmap circleBitmap = CommonUtil.createCircleImage(smallBitmap);
 		mIcon.setImageBitmap(circleBitmap);
 
+		pe_item_one = (TextView) findViewById(R.id.pe_item_one);
+		pe_item_two = (TextView) findViewById(R.id.pe_item_two);
+		peViewPager = (ViewPager) findViewById(R.id.peViewPager);
+
 		mName = (TextView) this.findViewById(R.id.txt_show_name3);
 		mName.setText(contactInfo.getName());
-		mPhone = (TextView) this.findViewById(R.id.txt_show_phone3);
-		mPhone.setText(contactInfo.getPhone());
-		mEmail = (TextView) this.findViewById(R.id.txt_show_email3);
-		mEmail.setText(contactInfo.getEmail());
-		mAddress = (TextView) this.findViewById(R.id.txt_show_address3);
-		mAddress.setText(contactInfo.getAddress());
+
+//		mPhone = (TextView) this.findViewById(R.id.txt_show_phone3);
+//		mPhone.setText(contactInfo.getPhone());
+//		mEmail = (TextView) this.findViewById(R.id.txt_show_email3);
+//		mEmail.setText(contactInfo.getEmail());
+//		mAddress = (TextView) this.findViewById(R.id.txt_show_address3);
+//		mAddress.setText(contactInfo.getAddress());
 
 
-		mEditContact = (TextView) this.findViewById(R.id.edit_contact3);
-		mEditContact.setOnClickListener(this);
-		mDeleteContact = (TextView) this.findViewById(R.id.delete_contact3);
-		mDeleteContact.setOnClickListener(this);
+//		mEditContact = (TextView) this.findViewById(R.id.edit_contact3);
+//		mEditContact.setOnClickListener(this);
+//		mDeleteContact = (TextView) this.findViewById(R.id.delete_contact3);
+//		mDeleteContact.setOnClickListener(this);
 //		mSendDesk = (TextView) this.findViewById(R.id.send_desk3);
 //		mSendDesk.setOnClickListener(this);
 
 		///////////////begin
-		mShowQrCode = (TextView) this.findViewById(R.id.show_QR_code);
-		mShowQrCode.setOnClickListener(this);
+//		mShowQrCode = (TextView) this.findViewById(R.id.show_QR_code);
+//		mShowQrCode.setOnClickListener(this);
 		/////////////end
 
-		mCallPhone = (TextView) this.findViewById(R.id.callPhone);
-		mCallPhone.setOnClickListener(this);
+//		mCallPhone = (TextView) this.findViewById(R.id.callPhone);
+//		mCallPhone.setOnClickListener(this);
+
 		mContactsUtil = new ContactsUtil(this);
 
 
-		mOnlineVoice = (TextView)this.findViewById(R.id.online_vioce);
-		mOnlineVoice.setOnClickListener(this);
+
 
 
 	}
@@ -170,78 +208,56 @@ public class XiangxiActivity extends Activity implements OnClickListener, PopupM
 	@Override
 	public void onClick(View v) {
 		switch (v.getId()) {
-
 			case R.id.txt_return3:
 				finish();
 				break;
-			case R.id.edit_contact3:
-				Intent editContact = new Intent(XiangxiActivity.this,
-						EditContactActivity.class);
-				editContact.putExtra("contact", contactInfo);
-				startActivity(editContact);
+			case R.id.tv_item_one:
+				peViewPager.setCurrentItem(0);
+				pe_item_one.setBackgroundColor(Color.WHITE);
+				pe_item_two.setBackgroundColor(Color.rgb(44,162,192));
+				pe_item_one.setTextColor(Color.rgb(128,128,128));
+				pe_item_two.setTextColor(Color.WHITE);
 				break;
-			case R.id.delete_contact3:
-				AlertDialog.Builder builder = new AlertDialog.Builder(this);
-				builder.setTitle("删除");
-				builder.setMessage("确定要删除联系人吗?");
-
-				builder.setPositiveButton("删除",
-						new DialogInterface.OnClickListener() {
-							@Override
-							public void onClick(DialogInterface dialog, int which) {
-
-								mContactsUtil.delete(contactInfo.getContactId());
-								Intent delete = new Intent(XiangxiActivity.this,
-										TelephoneActivity.class);
-								startActivity(delete);
-								finish();
-							}
-						}
-
-				).show();
-
-				builder.setNegativeButton("取消",
-						new DialogInterface.OnClickListener() {
-
-							@Override
-							public void onClick(DialogInterface dialog, int which) {
-
-								finish();
-								// dialog.dismiss();
-							}
-						}).show();
-
+			case R.id.tv_item_two:
+				peViewPager.setCurrentItem(1);
+				pe_item_one.setBackgroundColor(Color.rgb(44,162,192));
+				pe_item_two.setBackgroundColor(Color.WHITE);
+				pe_item_two.setTextColor(Color.rgb(128,128,128));
+				pe_item_one.setTextColor(Color.WHITE);
 				break;
-			case R.id.show_QR_code:
-
-				Intent show_qr = new Intent(XiangxiActivity.this,
-						ShowQrCodeActivity.class);
-				show_qr.putExtra("contact", contactInfo);
-				startActivity(show_qr);
-				break;
-			case R.id.online_vioce:
-				if(GlobalApplication.isLogin){
-					if(! OnlineVoiceManager.getInstance().call_up(contactInfo) ){
-						Toast.makeText(XiangxiActivity.this,"对方未上线",Toast.LENGTH_SHORT).show();
-					}
-				}else{
-					Toast.makeText(XiangxiActivity.this,"请先打开网络电话功能",Toast.LENGTH_SHORT).show();;
-				}
-
-				break;
-
-			case R.id.callPhone:
-				// 打电话的意图
-				Intent intent = new Intent();
-				// Intent.ACTION_CALL打电话的动作
-				intent.setAction(Intent.ACTION_CALL);
-				// uri统一资源标示符
-				intent.setData(Uri.parse("tel:" + contactInfo.getPhone()));
-				// 开启一个新的界面
-				startActivity(intent);
-				break;
-
 		}
 
+	}
+
+	public class MyPagerChangeListener implements ViewPager.OnPageChangeListener {
+
+		@Override
+		public void onPageScrollStateChanged(int arg0) {
+		}
+
+
+
+
+		@Override
+		public void onPageScrolled(int arg0, float arg1, int arg2) {
+		}
+
+		@Override
+		public void onPageSelected(int arg0) {
+			switch (arg0) {
+				case 0:
+					pe_item_one.setBackgroundColor(Color.WHITE);
+					pe_item_two.setBackgroundColor(Color.rgb(44,162,192));
+					pe_item_one.setTextColor(Color.rgb(128,128,128));
+					pe_item_two.setTextColor(Color.WHITE);
+					break;
+				case 1:
+					pe_item_one.setBackgroundColor(Color.rgb(44,162,192));
+					pe_item_two.setBackgroundColor(Color.WHITE);
+					pe_item_two.setTextColor(Color.rgb(128,128,128));
+					pe_item_one.setTextColor(Color.WHITE);
+					break;
+			}
+		}
 	}
 }
