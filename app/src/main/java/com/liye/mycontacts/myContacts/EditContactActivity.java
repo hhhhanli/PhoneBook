@@ -169,7 +169,7 @@ public class EditContactActivity extends Activity implements OnClickListener {
 				} else {
 					changeContact();
 					Intent intent = new Intent(EditContactActivity.this,
-							TelephoneActivity.class);
+							MainActivity.class);
 					startActivity(intent);
 					finish();
 				}

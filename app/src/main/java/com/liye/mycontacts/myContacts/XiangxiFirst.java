@@ -6,6 +6,7 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -54,11 +55,16 @@ public class XiangxiFirst extends android.support.v4.app.Fragment implements Vie
         View view = inflater.inflate(R.layout.xiangxione, null);
 
         mPhone = (TextView) view.findViewById(R.id.txt_show_phone3);
-        mPhone.setText(contactInfo.getPhone());
+        if(contactInfo.getPhone() == null) mPhone.setText("");
+        else mPhone.setText(contactInfo.getPhone());
         mEmail = (TextView) view.findViewById(R.id.txt_show_email3);
-        mEmail.setText(contactInfo.getEmail());
+        if(contactInfo.getEmail() == null) mEmail.setText("");
+        else mEmail.setText(contactInfo.getEmail());
+
         mAddress = (TextView) view.findViewById(R.id.txt_show_address3);
-        mAddress.setText(contactInfo.getAddress());
+        if(contactInfo.getAddress() == null) mAddress.setText("");
+        else mAddress.setText(contactInfo.getAddress());
+
 
         mEditContact = (TextView) view.findViewById(R.id.edit_contact3);
         mEditContact.setOnClickListener(this);
