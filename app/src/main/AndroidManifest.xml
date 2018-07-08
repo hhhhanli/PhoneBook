@@ -69,6 +69,25 @@
             android:name="com.liye.onlineVoice.VoiceControlActivity"
             android:theme="@style/Theme.AppCompat.Light.NoActionBar"
             />
+
+
+        <activity android:name=".utils.Myline"
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar">
+
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+            </intent-filter>
+        </activity>
+
+        <activity android:name=".utils.Pie"
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar">
+
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+            </intent-filter>
+        </activity>
     </application>
 
 </manifest>

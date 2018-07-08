@@ -50,6 +50,7 @@ public class MainActivity extends ActionBarActivity implements OnClickListener {
         oneFragment.SetContext(this);
         oneFragment.setAct(this);
         twoFragment.SetContext(this);
+        threeFragment.SetContext(this);
         list.add(oneFragment);
         list.add(twoFragment);
         list.add(threeFragment);
