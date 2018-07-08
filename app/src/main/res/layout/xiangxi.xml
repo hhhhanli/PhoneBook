@@ -62,180 +62,41 @@
             android:paddingTop="20dp"
             android:enabled="false"/>
     </LinearLayout>
-    <ScrollView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content">
-        <LinearLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:orientation="vertical">
-            <LinearLayout
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="20dp">
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="10dp"
-                    android:layout_marginLeft="25dp"
-                    android:textSize="15dp"
-                    android:text="电话号码:" />
-            </LinearLayout>
 
-            <LinearLayout
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:gravity="center_horizontal">
-                <EditText
-                    android:id="@+id/txt_show_phone3"
-                    android:layout_marginLeft="25dp"
-                    android:layout_width="325dp"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="5dp"
-                    android:enabled="false"
-                    android:textColor="@color/black"/>
-            </LinearLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center_vertical"
+        android:orientation="horizontal"
+        android:weightSum="3.0">
 
-            <LinearLayout
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="10dp">
+        <TextView
+            android:id="@+id/pe_item_one"
+            android:layout_width="fill_parent"
+            android:layout_height="40dp"
+            android:textSize="17dp"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:background="#2CA2C0"
+            android:textColor="@color/white"
+            android:text="详情" />
 
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="20dp"
-                    android:layout_marginLeft="25dp"
-                    android:textSize="15dp"
-                    android:text="电子邮箱:" />
-            </LinearLayout>
+        <TextView
+            android:id="@+id/pe_item_two"
+            android:layout_width="fill_parent"
+            android:layout_height="40dp"
+            android:textSize="17dp"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:background="#2CA2C0"
+            android:textColor="@color/white"
+            android:text="通话记录" />
+    </LinearLayout>
 
-            <LinearLayout
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:gravity="center_horizontal">
-                <EditText
-                    android:id="@+id/txt_show_email3"
-                    android:layout_marginLeft="25dp"
-                    android:layout_width="325dp"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="5dp"
-                    android:enabled="false"
-                    android:textColor="@color/black"/>
-            </LinearLayout>
+    <android.support.v4.view.ViewPager
+        android:id="@+id/peViewPager"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_weight="1" />
 
-            <LinearLayout
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="10dp">
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="20dp"
-                    android:layout_marginLeft="25dp"
-                    android:textSize="15dp"
-                    android:text="联系人地址:" />
-
-
-            </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:gravity="center_horizontal">
-                <EditText
-                    android:id="@+id/txt_show_address3"
-                    android:layout_marginLeft="25dp"
-                    android:layout_width="325dp"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="5dp"
-                    android:enabled="false"
-                    android:textColor="@color/black"/>
-            </LinearLayout>
-
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="vertical" >
-
-
-                <TextView
-                    android:id="@+id/show_QR_code"
-                    android:layout_width="325dp"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="30dp"
-                    android:textColor="@color/blue"
-                    android:layout_marginLeft="25dp"
-                    android:textSize="15dp"
-                    android:text="二维码名片"
-                    />
-                <View
-                    android:layout_marginLeft="25dp"
-                    android:layout_marginTop="10dp"
-                    android:layout_width="match_parent"
-                    android:layout_height="0.5dp"
-                    android:background="#33000000" />
-
-                <!--<TextView-->
-                <!--android:id="@+id/send_desk3"-->
-                <!--android:layout_width="match_parent"-->
-                <!--android:layout_height="wrap_content"-->
-                <!--android:gravity="center_horizontal"-->
-                <!--android:layout_marginTop="15dp"-->
-                <!--android:text="发送到桌面"-->
-                <!--/>-->
-            </LinearLayout>
-            <TextView
-
-                android:id="@+id/callPhone"
-                android:layout_marginTop="20dp"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:background="@null"
-                android:layout_marginLeft="25dp"
-                android:textColor="@color/blue"
-                android:textSize="15dp"
-                android:text="拨打电话"></TextView>
-            <View
-                android:layout_marginLeft="25dp"
-                android:layout_marginTop="10dp"
-                android:layout_width="325dp"
-                android:layout_height="0.5dp"
-                android:background="#33000000" />
-            <TextView
-                android:id="@+id/edit_contact3"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="25dp"
-                android:layout_marginTop="20dp"
-                android:textColor="@color/blue"
-                android:textSize="15dp"
-                android:text="编辑联系人"
-                />
-            <View
-                android:layout_marginLeft="25dp"
-                android:layout_marginTop="10dp"
-                android:layout_width="325dp"
-                android:layout_height="0.5dp"
-                android:background="#33000000" />
-            <TextView
-                android:id="@+id/delete_contact3"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="25dp"
-                android:layout_marginTop="20dp"
-                android:textColor="@color/blue"
-                android:textSize="15dp"
-                android:text="删除联系人"
-                />
-            <View
-                android:layout_marginLeft="25dp"
-                android:layout_marginTop="10dp"
-                android:layout_width="325dp"
-                android:layout_height="0.5dp"
-                android:background="#33000000" />
-        </LinearLayout>
-    </ScrollView>
 </LinearLayout>

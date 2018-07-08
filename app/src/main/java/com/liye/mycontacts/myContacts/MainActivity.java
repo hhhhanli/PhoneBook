@@ -56,7 +56,7 @@ public class MainActivity extends ActionBarActivity implements OnClickListener {
         adapter = new TabFragmentPagerAdapter(getSupportFragmentManager(), list);
         myViewPager.setAdapter(adapter);
         myViewPager.setCurrentItem(0);  //初始化显示第一个页面
-        tv_item_one.setBackgroundColor(Color.WHITE);//被选中就为红色
+        tv_item_one.setBackgroundColor(Color.WHITE);
         tv_item_one.setTextColor(Color.rgb(128,128,128));
     }
 
