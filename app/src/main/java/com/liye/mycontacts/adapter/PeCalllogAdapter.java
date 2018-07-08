@@ -16,14 +16,14 @@ import java.text.SimpleDateFormat;
 import java.util.List;
 
 /**
- * Created by Mr.Zhao on 2018/7/7.
+ * Created by Mr.Zhao on 2018/7/8.
  */
 
-public class CalllogAdapter extends BaseAdapter {
+public class PeCalllogAdapter extends BaseAdapter {
     public List<CallLogInfo> infos;
     Context mContext;
 
-    public CalllogAdapter(Context context, List<CallLogInfo> infos) {
+    public PeCalllogAdapter(Context context, List<CallLogInfo> infos) {
         super();
         this.infos = infos;
         this.mContext = context;
@@ -48,18 +48,11 @@ public class CalllogAdapter extends BaseAdapter {
 
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
-        View view = LayoutInflater.from(mContext).inflate(R.layout.item_calllog, null);
-        TextView tv_name = (TextView) view.findViewById(R.id.tv_name);
-        TextView tv_duration = (TextView) view.findViewById(R.id.tv_duration);
-        TextView tv_date = (TextView) view.findViewById(R.id.tv_date);
-        TextView tv_type = (TextView) view.findViewById(R.id.tv_type);
+        View view = LayoutInflater.from(mContext).inflate(R.layout.item_pecalllog, null);
+        TextView tv_duration = (TextView) view.findViewById(R.id.ptv_duration);
+        TextView tv_date = (TextView) view.findViewById(R.id.ptv_date);
+        TextView tv_type = (TextView) view.findViewById(R.id.ptv_type);
         CallLogInfo info = infos.get(position);
-        if(info.name == null) {
-            tv_name.setText(info.number);
-        }
-        else {
-            tv_name.setText(info.name);
-        }
         tv_duration.setText(String.valueOf(info.calltime));
         SimpleDateFormat format = new SimpleDateFormat(
                 "yyyy-MM-dd hh:mm:ss");
@@ -84,13 +77,11 @@ public class CalllogAdapter extends BaseAdapter {
             default:
                 break;
         }
-
         if("未接".equals(typeStr)) {
-            tv_name.setTextColor(color);
+            tv_date.setTextColor(color);
         }
         tv_type.setText(typeStr);
         tv_type.setTextColor(color);
         return view;
     }
 }
-

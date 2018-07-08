@@ -10,7 +10,9 @@ import android.widget.TextView;
 
 import com.liye.mycontacts.R;
 import com.liye.mycontacts.adapter.CalllogAdapter;
+import com.liye.mycontacts.adapter.PeCalllogAdapter;
 import com.liye.mycontacts.utils.CallLogInfo;
+import com.liye.mycontacts.utils.ContactInfo;
 import com.liye.mycontacts.utils.ContactsMsgUtils;
 
 import java.util.List;
@@ -22,6 +24,7 @@ import java.util.List;
 public class XiangxiSecond extends android.support.v4.app.Fragment {
     Context mContext;
     ListView lv;
+    ContactInfo contactInfo;
 
     public XiangxiSecond() {
         // Required empty public constructor
@@ -32,17 +35,22 @@ public class XiangxiSecond extends android.support.v4.app.Fragment {
         this.mContext = context;
     }
 
+    public void setcon(ContactInfo contactInfo) {
+        this.contactInfo = contactInfo;
+    }
+
     @Override
     public View onCreateView(LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.xiangxitwo, null);
         List<CallLogInfo> infos;
-        CalllogAdapter adapter1og;
+        PeCalllogAdapter adapter1og;
         ContactsMsgUtils contactsMsgUtils;
-        lv = (ListView) view.findViewById(R.id.lv);
         contactsMsgUtils = new ContactsMsgUtils(mContext);
-        infos = contactsMsgUtils.select();
-        adapter1og = new CalllogAdapter(mContext, infos);
+        contactsMsgUtils.setName(contactInfo.getName());
+        lv = (ListView) view.findViewById(R.id.pe_lv);
+        infos = contactsMsgUtils.pe_select();
+        adapter1og = new PeCalllogAdapter(mContext, infos);
         lv.setAdapter(adapter1og);
         return view;
     }

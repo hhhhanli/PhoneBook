@@ -11,12 +11,15 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.PopupMenu;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.liye.QrCode.zxing.profile.ShowQrCodeActivity;
 import com.liye.mycontacts.R;
 import com.liye.mycontacts.menu.TelephoneActivity;
 import com.liye.mycontacts.utils.ContactInfo;
 import com.liye.mycontacts.utils.ContactsUtil;
+import com.liye.onlineVoice.GlobalApplication;
+import com.liye.onlineVoice.OnlineVoiceManager;
 
 import java.util.List;
 
@@ -26,7 +29,7 @@ import java.util.List;
 
 public class XiangxiFirst extends android.support.v4.app.Fragment implements View.OnClickListener{
     Context mContext;
-    TextView mPhone, mEmail, mAddress, mCallPhone;
+    TextView mPhone, mEmail, mAddress, mCallPhone,mOnlineVoice;
     ContactsUtil mContactsUtil;
     ////////////////begin
     TextView mEditContact, mDeleteContact, mShowQrCode;
@@ -66,6 +69,9 @@ public class XiangxiFirst extends android.support.v4.app.Fragment implements Vie
         mShowQrCode = (TextView) view.findViewById(R.id.show_QR_code);
         mShowQrCode.setOnClickListener(this);
         /////////////end
+
+        mOnlineVoice = (TextView)view.findViewById(R.id.online_vioce);
+		mOnlineVoice.setOnClickListener(this);
 
         mCallPhone = (TextView) view.findViewById(R.id.callPhone);
         mCallPhone.setOnClickListener(this);
@@ -116,28 +122,17 @@ public class XiangxiFirst extends android.support.v4.app.Fragment implements Vie
                 show_qr.putExtra("contact", contactInfo);
                 startActivity(show_qr);
                 break;
-//			case R.id.send_desk3:
-//				// 发送到桌面
-//				Intent send = new Intent(
-//						"com.android.launcher.action.INSTALL_SHORTCUT");
-//				// 快捷方式 图标 名字
-//				// 图标
-//				send.putExtra(Intent.EXTRA_SHORTCUT_ICON_RESOURCE, R.drawable.t4);
-//				// 名字
-//				send.putExtra(Intent.EXTRA_SHORTCUT_NAME, "");
-//				Intent handle = XiangxiActivity.this.getPackageManager()
-//						.getLaunchIntentForPackage(
-//								XiangxiActivity.this.getPackageName());
-//				// 点击快捷方式---->处理的事情
-//				//Intent handle = new Intent(Intent.ACTION_CALL);
-//				send.putExtra(Intent.EXTRA_SHORTCUT_INTENT, handle);
-//
-//				sendBroadcast(send);
-//
-//				Toast.makeText(getApplicationContext(), "桌面的快捷方式添加完成",
-//						Toast.LENGTH_LONG).show();
-//
-//				break;
+
+            case R.id.online_vioce:
+                if(GlobalApplication.isLogin){
+                    if(! OnlineVoiceManager.getInstance().call_up(contactInfo) ){
+                        Toast.makeText(mContext,"对方未上线",Toast.LENGTH_SHORT).show();
+                    }
+                }else{
+                    Toast.makeText(mContext,"请先打开网络电话功能",Toast.LENGTH_SHORT).show();;
+                }
+
+                break;
             case R.id.callPhone:
                 // 打电话的意图
                 Intent intent = new Intent();

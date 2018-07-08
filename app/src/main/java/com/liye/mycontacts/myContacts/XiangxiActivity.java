@@ -79,6 +79,7 @@ public class XiangxiActivity extends ActionBarActivity implements OnClickListene
 		oneFragment.SetContext(this);
 		oneFragment.setcon(contactInfo);
 		twoFragment.SetContext(this);
+		twoFragment.setcon(contactInfo);
 		list.add(oneFragment);
 		list.add(twoFragment);
 		adapter = new TabFragmentPagerAdapter(getSupportFragmentManager(), list);
@@ -198,9 +199,6 @@ public class XiangxiActivity extends ActionBarActivity implements OnClickListene
 //		mCallPhone.setOnClickListener(this);
 
 		mContactsUtil = new ContactsUtil(this);
-
-
-
 
 
 	}

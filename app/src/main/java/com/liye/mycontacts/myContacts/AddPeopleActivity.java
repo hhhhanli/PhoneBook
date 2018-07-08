@@ -173,7 +173,7 @@ public class AddPeopleActivity extends Activity implements OnClickListener {
 				} else {
 					addNewContact();
 					Intent intent = new Intent(AddPeopleActivity.this,
-							TelephoneActivity.class);
+							MainActivity.class);
 					startActivity(intent);
 					finish();
 				}
