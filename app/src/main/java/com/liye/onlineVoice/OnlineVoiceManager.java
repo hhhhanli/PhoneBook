@@ -111,7 +111,7 @@ public class OnlineVoiceManager {
             }catch (Exception e){
              Log.d(e.toString(),e.toString());
             }
-            GlobalApplication.showMessage("对方已挂断");
+            GlobalApplication.showMessage("已挂断");
         }
 
         //recipient picks up the call
@@ -150,12 +150,19 @@ public class OnlineVoiceManager {
                 if(contact != null){
                     GlobalApplication.playRing();
                     remote_user = contact;
-                    Intent intent = new Intent(global_context,VoiceControlActivity.class);
-                    intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-                    intent.putExtra("contact",remote_user);
-                    intent.putExtra("switch",false);
-                    intent.putExtra("status",false);
-                    global_context.startActivity(intent);
+                    try{
+                        Intent intent = new Intent(global_context,VoiceControlActivity.class);
+                        intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                        intent.putExtra("contact",remote_user);
+                        intent.putExtra("switch",false);
+                        intent.putExtra("status",false);
+                        global_context.startActivity(intent);
+                    }
+                    catch (Exception e){
+                        GlobalApplication.showMessage("网络不稳定");
+                        Log.d("inComingError",e.toString());
+                    }
+
 
                 }
             }

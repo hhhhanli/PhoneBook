@@ -23,9 +23,9 @@ import com.liye.mycontacts.utils.ContactInfo;
 public class VoiceControlActivity extends AppCompatActivity implements View.OnClickListener {
     private ContactInfo remote_user;
     private TextView voice_status;
-    TextView hangs_free,mute;
-    ImageView calling_huang_up,answering_huang_up,answering_pick_up;
-
+    private TextView hangs_free,mute;
+    private ImageView calling_huang_up,answering_huang_up,answering_pick_up;
+    private AudioManager am;
 
     public  boolean calling_or_answering ;
     @Override
@@ -43,6 +43,9 @@ public class VoiceControlActivity extends AppCompatActivity implements View.OnCl
 
         voice_status = (TextView)findViewById(R.id.voice_status);
 
+        am = (AudioManager) VoiceControlActivity.this.getSystemService(Context.AUDIO_SERVICE);
+        am.setMode(AudioManager.MODE_IN_CALL);
+
         addCallingItem();
         addAnsweringItem();
 
@@ -53,12 +56,14 @@ public class VoiceControlActivity extends AppCompatActivity implements View.OnCl
         }
 
         if(getIntent().getBooleanExtra("status",true)){
-            updateStatus(false);
-        }else{
             updateStatus(true);
+        }else{
+            updateStatus(false);
         }
 
         OnlineVoiceManager.getInstance().setCurrentVoiceControlContext(this);
+
+
 
     }
 
@@ -90,11 +95,10 @@ public class VoiceControlActivity extends AppCompatActivity implements View.OnCl
         lin.addView(layout);
         hangs_free = (TextView)findViewById(R.id.calling_hands_free);
         hangs_free.setText("免提");
+        am.setSpeakerphoneOn(false);
         hangs_free.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                AudioManager am = (AudioManager) VoiceControlActivity.this.getSystemService(Context.AUDIO_SERVICE);
-                am.setMode(AudioManager.MODE_IN_CALL);
                 am.setSpeakerphoneOn(!am.isSpeakerphoneOn());
                 if("免提".equals(hangs_free.getText())) hangs_free.setText("听筒");
                 else hangs_free.setText("免提");
@@ -102,11 +106,10 @@ public class VoiceControlActivity extends AppCompatActivity implements View.OnCl
         });
         mute = (TextView)findViewById(R.id.calling_mute);
         mute.setText("静音");
+        am.setSpeakerphoneOn(false);
         mute.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                AudioManager am = (AudioManager) VoiceControlActivity.this.getSystemService(Context.AUDIO_SERVICE);
-                am.setMode(AudioManager.MODE_IN_CALL);
                 am.setMicrophoneMute(!am.isMicrophoneMute());
                 if("静音".equals(mute.getText())) mute.setText("关闭静音");
                 else mute.setText("静音");
