@@ -136,6 +136,7 @@ public class VoiceControlActivity extends AppCompatActivity implements View.OnCl
         answering_huang_up.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                GlobalApplication.stopRing();
                 OnlineVoiceManager.getInstance().huang_up();
             }
         });
@@ -143,6 +144,7 @@ public class VoiceControlActivity extends AppCompatActivity implements View.OnCl
         answering_pick_up.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                GlobalApplication.stopRing();
                 OnlineVoiceManager.getInstance().pick_up();
                 switchAnsweringToCalling(true);
                 updateStatus(true);

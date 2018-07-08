@@ -3,9 +3,13 @@ package com.liye.onlineVoice;
 import android.app.Application;
 import android.content.Context;
 import android.content.SharedPreferences;
+import android.media.AudioManager;
+import android.media.SoundPool;
 import android.os.Handler;
 import android.os.Message;
 import android.widget.Toast;
+
+import com.liye.mycontacts.R;
 
 /**
  * Created by zhanh on 2018/7/7.
@@ -15,13 +19,18 @@ public class GlobalApplication extends Application {
     private static Context context;
     public static boolean isLogin;
     private static SharedPreferences db;
-
+    private static SoundPool soundPool;
+    private static int streamId;
     private static Handler handler ;
     @Override
     public void onCreate() {
+
         db = getSharedPreferences("login",MODE_PRIVATE);
         isLogin=false;
         context = getApplicationContext();
+        soundPool = new SoundPool(1, AudioManager.STREAM_MUSIC,5);
+        soundPool.load(context,R.raw.incomingring,1);
+
         handler = new Handler(){
             @Override
             public void handleMessage(Message msg) {
@@ -48,6 +57,12 @@ public class GlobalApplication extends Application {
         m.what=3;
         m.obj = msg;
         handler.sendMessage(m);
+    }
+    public  static void playRing(){
+        streamId =  soundPool.play(1,1,1,0,-1,1);
+    }
+    public static void stopRing(){
+        soundPool.stop(streamId);
     }
 
 

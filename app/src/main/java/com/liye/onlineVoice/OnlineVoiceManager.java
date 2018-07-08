@@ -5,7 +5,10 @@ import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.media.AudioAttributes;
 import android.media.AudioManager;
+import android.media.SoundPool;
+import android.os.Build;
 import android.os.Looper;
 import android.telephony.TelephonyManager;
 import android.util.Log;
@@ -101,9 +104,14 @@ public class OnlineVoiceManager {
             //no current call
             currentCall = null;
             //volume buttons go back to controlling ringtone volume
-            voice_control_context.setVolumeControlStream(AudioManager.USE_DEFAULT_STREAM_TYPE);
-            voice_control_context.finish();
-            remote_user=null;
+            try {
+                voice_control_context.setVolumeControlStream(AudioManager.USE_DEFAULT_STREAM_TYPE);
+                voice_control_context.finish();
+                remote_user=null;
+            }catch (Exception e){
+             Log.d(e.toString(),e.toString());
+            }
+            GlobalApplication.showMessage("对方已挂断");
         }
 
         //recipient picks up the call
@@ -112,6 +120,7 @@ public class OnlineVoiceManager {
 
             //ringtone volume buttons now control the speaker volume
            voice_control_context.setVolumeControlStream(AudioManager.STREAM_VOICE_CALL);
+
         }
 
         //when call is "ringing"
@@ -139,6 +148,7 @@ public class OnlineVoiceManager {
 
                 ContactInfo contact = new ContactsUtil(global_context).findContactInfo(currentCall.getRemoteUserId());
                 if(contact != null){
+                    GlobalApplication.playRing();
                     remote_user = contact;
                     Intent intent = new Intent(global_context,VoiceControlActivity.class);
                     intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
@@ -259,5 +269,6 @@ public class OnlineVoiceManager {
 
         return tManager.getLine1Number();
     }
+
     ///////////////zhl
 }

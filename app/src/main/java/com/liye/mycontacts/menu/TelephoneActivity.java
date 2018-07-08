@@ -163,9 +163,6 @@ public class TelephoneActivity  extends FragmentActivity {
         mScanQrCode.setOnClickListener(new MyOnclickListener(this));
         ///////zhl
         onlineVoiceSwitch = (Switch) this.findViewById(R.id.online_voice_switch);
-
-
-
         onlineVoiceSwitch.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
 
             @Override
