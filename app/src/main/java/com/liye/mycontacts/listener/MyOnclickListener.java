@@ -12,8 +12,13 @@ import com.liye.mycontacts.R;
 import com.liye.mycontacts.menu.TelephoneActivity;
 import com.liye.mycontacts.myContacts.AddPeopleActivity;
 import com.liye.mycontacts.myContacts.CallPhoneActivity;
+
 import com.liye.onlineVoice.GlobalApplication;
 import com.liye.onlineVoice.OnlineVoiceManager;
+
+import com.liye.mycontacts.myContacts.FirstFragment;
+import com.liye.mycontacts.myContacts.MainActivity;
+
 
 /**
  * Created by MK on 2016/4/8.
@@ -23,9 +28,9 @@ import com.liye.onlineVoice.OnlineVoiceManager;
  */
 public class MyOnclickListener  implements View.OnClickListener{
 
-    private TelephoneActivity activity;
-    public MyOnclickListener(TelephoneActivity activity) {
-        this.activity = activity;
+    private FirstFragment fragment;
+    public MyOnclickListener(FirstFragment fragment) {
+        this.fragment = fragment;
     }
 
     @Override
@@ -35,29 +40,30 @@ public class MyOnclickListener  implements View.OnClickListener{
 
             //添加联系人的按钮
             case R.id.txt_add_contact:
-                Intent intent = new Intent(activity,
+                Intent intent = new Intent(this.fragment.getCon(),
                         AddPeopleActivity.class);
-                activity.startActivity(intent);
+                this.fragment.getCon().startActivity(intent);
                 break;
             //拨打电话的按钮
             case R.id.txt_call_phone:
-                Intent intent2 = new Intent(activity,
+                Intent intent2 = new Intent(this.fragment.getCon(),
                         CallPhoneActivity.class);
-                activity.startActivity(intent2);
+                this.fragment.getCon().startActivity(intent2);
                 break;
             //控制是否显示左侧菜单的按钮
             case R.id.menu1:
                 // 按钮按下，将抽屉打开
-                activity.mDrawerLayout.openDrawer(Gravity.LEFT);
+                this.fragment.getDra().openDrawer(Gravity.LEFT);
                 break;
 
             /////////////begin二维码
             case R.id.txt_scan_QrCode:
                 if(CommonUtil.isCameraCanUse()){
-                    Intent intent_qr = new Intent(this.activity, CaptureActivity.class);
-                    this.activity.startActivityForResult(intent_qr, this.activity.GET_CODE);
+                    Intent intent_qr = new Intent(this.fragment.getCon(), CaptureActivity.class);
+                    //this.fragment.getAct().startActivityForResult(intent_qr, this.fragment.GET_CODE);
+                    this.fragment.startActivityForResult(intent_qr, this.fragment.GET_CODE);
                 }else{
-                    Toast.makeText(this.activity,"请打开此应用的摄像头权限",Toast.LENGTH_SHORT).show();
+                    Toast.makeText(this.fragment.getCon(),"请打开此应用的摄像头权限",Toast.LENGTH_SHORT).show();
                 }
                 break;
             ///////////////////end

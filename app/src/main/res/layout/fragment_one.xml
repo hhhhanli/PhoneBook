@@ -18,7 +18,6 @@
             android:background="@drawable/input"
             android:layout_marginLeft="25dp"
             android:hint="搜索"
-            android:textColor="@color/gray"
             />
 
         <RelativeLayout
@@ -104,12 +103,6 @@
                     android:layout_marginBottom="5dp"
                     />
 
-                <Switch
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:id="@+id/online_voice_switch" />
-
-
             </LinearLayout>
         </LinearLayout>
 
@@ -122,64 +115,62 @@
 
     </RelativeLayout>
 
-        <RelativeLayout
-            android:id="@+id/menu"
-            android:layout_width="270dp"
-            android:layout_height="fill_parent"
-            android:layout_gravity="start"
-            android:background="@drawable/shiguang1">
+    <RelativeLayout
+        android:id="@+id/menu"
+        android:layout_width="270dp"
+        android:layout_height="fill_parent"
+        android:layout_gravity="start"
+        android:background="@drawable/shiguang1">
 
-            <ImageView
-                android:id="@+id/imagebtn"
-                android:layout_width="100dp"
-                android:layout_height="100dp"
-                android:layout_centerHorizontal="true"
-                android:layout_marginTop="50dp"
-                />
-            <!--        -->
+        <ImageView
+            android:id="@+id/imagebtn"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="50dp"
+            />
+        <!--        -->
 
-            <LinearLayout
-                android:id="@+id/linearlayout1"
+        <LinearLayout
+            android:id="@+id/linearlayout1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/imagebtn"
+
+            android:layout_centerHorizontal="true"
+            android:orientation="horizontal"
+            >
+
+            <TextView
+                android:id="@+id/textView"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_below="@id/imagebtn"
+                android:text="liye"
+                android:textColor="#ffffff"
+                android:layout_gravity="center"
+                android:layout_marginLeft="20dp"
+                android:textSize="23sp" />
 
-                android:layout_centerHorizontal="true"
-                android:orientation="horizontal"
-               >
-
-                <TextView
-                    android:id="@+id/textView"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="liye"
-                    android:textColor="#ffffff"
-                    android:layout_gravity="center"
-                    android:layout_marginLeft="20dp"
-                    android:textSize="23sp" />
-
-                <ImageView
-                    android:id="@+id/imagebtn1"
-                    android:layout_marginLeft="20dp"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:src="@drawable/menuicon_exit01" />
+            <ImageView
+                android:id="@+id/imagebtn1"
+                android:layout_marginLeft="20dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/menuicon_exit01" />
 
 
-            </LinearLayout>
+        </LinearLayout>
 
 
-            <ListView
-                android:id="@+id/contentList"
-                android:layout_width="fill_parent"
-                android:layout_height="fill_parent"
-                android:layout_below="@id/linearlayout1"
-                android:layout_marginTop="60dp"
-                android:divider="@drawable/menuline"
-                />
+        <ListView
+            android:id="@+id/contentList"
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:layout_below="@id/linearlayout1"
+            android:layout_marginTop="60dp"
+            android:divider="@drawable/menuline"
+            />
 
-        </RelativeLayout>
+    </RelativeLayout>
 
-
-
- </android.support.v4.widget.DrawerLayout>
+</android.support.v4.widget.DrawerLayout>

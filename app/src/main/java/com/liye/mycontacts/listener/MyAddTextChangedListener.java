@@ -4,6 +4,7 @@ import android.text.Editable;
 import android.text.TextWatcher;
 
 import com.liye.mycontacts.menu.TelephoneActivity;
+import com.liye.mycontacts.myContacts.FirstFragment;
 
 /**
  * Created by MK on 2016/4/8.
@@ -11,11 +12,11 @@ import com.liye.mycontacts.menu.TelephoneActivity;
 /*
 文本改变的监听事件
  */
-    //TextWatcher编辑框监听器，会实现下面三个方法
+//TextWatcher编辑框监听器，会实现下面三个方法
 public class MyAddTextChangedListener  implements TextWatcher {
-    private TelephoneActivity activity;
-    public MyAddTextChangedListener(TelephoneActivity activity) {
-        this.activity = activity;
+    private FirstFragment fragment;
+    public MyAddTextChangedListener(FirstFragment fragment) {
+        this.fragment = fragment;
     }
     //文本改变之前
     @Override
@@ -35,7 +36,7 @@ public class MyAddTextChangedListener  implements TextWatcher {
         // before:添加的文字总数
 
         //filterContact（）过滤联系人信息的方法
-        activity.filterContact(s.toString());
+        this.fragment.filterContact(s.toString());
     }
     //文本改变之后
     @Override

@@ -10,7 +10,10 @@ import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.os.Bundle;
 import android.os.Handler;
+
 import android.support.v4.app.ActivityCompat;
+import android.support.v4.app.Fragment;
+
 import android.support.v4.app.FragmentActivity;
 import android.support.v4.content.ContextCompat;
 import android.support.v4.widget.DrawerLayout;
@@ -62,7 +65,7 @@ public class TelephoneActivity  extends FragmentActivity {
     private SideBar sideBar;
     private TextView dialog;
     /*************zjt:sidebar*************/
-     //侧滑布局对象，用于通过手指滑动将左侧的菜单布局进行显示或隐藏。
+    //侧滑布局对象，用于通过手指滑动将左侧的菜单布局进行显示或隐藏。
     private ImageView ImageView_menu;
     ProgressDialog mProgressDialog;// 圆形进度条的对话框
     public static final int LOAD_FINISH = 0X01;
@@ -131,10 +134,11 @@ public class TelephoneActivity  extends FragmentActivity {
                 handler.sendEmptyMessage(LOAD_FINISH);
             }
         }.start();
-        initView();
+        //initView();
     }
 
     public void initView() {
+        /*
         mDrawerLayout=(DrawerLayout)findViewById(R.id.drawerlayout);
         mHead = (ImageView) findViewById(R.id.imagebtn);
         getCircleHead();
@@ -200,7 +204,7 @@ public class TelephoneActivity  extends FragmentActivity {
 
         mSearchEditText = (SearchEditText) this.findViewById(R.id.edt_search);
         // 添加一个文本改变的监听事件
-        mSearchEditText.addTextChangedListener(new MyAddTextChangedListener(this));
+        mSearchEditText.addTextChangedListener(new MyAddTextChangedListener(this));*/
 
 
         /***********************************zjt:sidebar*****************/
