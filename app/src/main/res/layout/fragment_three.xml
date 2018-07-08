@@ -23,7 +23,7 @@
             android:layout_height="wrap_content"
             android:id="@+id/from_time"
             android:hint="选择时间"
-            android:focusable="true"
+            android:focusable="false"
             android:focusableInTouchMode="true"
             android:layout_below="@+id/relativeLayout"
             />
@@ -43,7 +43,8 @@
             android:id="@+id/to_time"
             android:hint="选择时间"
             android:layout_toRightOf="@+id/to"
-            android:layout_alignTop="@id/from_time"/>
+            android:layout_alignTop="@id/from_time"
+            android:focusable="false"/>
     </LinearLayout>
 
     <RelativeLayout

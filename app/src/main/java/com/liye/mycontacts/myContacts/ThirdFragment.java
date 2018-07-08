@@ -73,15 +73,15 @@ public class ThirdFragment extends android.support.v4.app.Fragment {
         from_time.setInputType(InputType.TYPE_NULL);
         to_time = (EditText)view.findViewById(R.id.to_time);
         to_time.setInputType(InputType.TYPE_NULL);
-        from_time.setOnFocusChangeListener(new View.OnFocusChangeListener() {
-
-            @Override
-            public void onFocusChange(View v, boolean hasFocus) {
-                if(hasFocus){
-                    showDatePickerDialog_from();
-                }
-            }
-        });
+//        from_time.setOnFocusChangeListener(new View.OnFocusChangeListener() {
+//
+//            @Override
+//            public void onFocusChange(View v, boolean hasFocus) {
+//                if(hasFocus){
+//                    showDatePickerDialog_from();
+//                }
+//            }
+//        });
 
         from_time.setOnClickListener(new View.OnClickListener() {
 
@@ -91,15 +91,15 @@ public class ThirdFragment extends android.support.v4.app.Fragment {
             }
         });
 
-        to_time.setOnFocusChangeListener(new View.OnFocusChangeListener() {
-
-            @Override
-            public void onFocusChange(View v, boolean hasFocus) {
-                if(hasFocus){
-                    showDatePickerDialog_to();
-                }
-            }
-        });
+//        to_time.setOnFocusChangeListener(new View.OnFocusChangeListener() {
+//
+//            @Override
+//            public void onFocusChange(View v, boolean hasFocus) {
+//                if(hasFocus){
+//                    showDatePickerDialog_to();
+//                }
+//            }
+//        });
 
         to_time.setOnClickListener(new View.OnClickListener() {
 

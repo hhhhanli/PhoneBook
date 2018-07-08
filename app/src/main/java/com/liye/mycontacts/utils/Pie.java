@@ -18,6 +18,7 @@ import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
 import java.util.Map;
+import java.util.Random;
 
 import lecho.lib.hellocharts.listener.PieChartOnValueSelectListener;
 import lecho.lib.hellocharts.model.PieChartData;
@@ -38,12 +39,13 @@ public class Pie extends Activity {
     List<SliceValue> values = new ArrayList<SliceValue>();
     //定义数据，实际情况肯定不是这样写固定值的
 
-    private int[] colorData = {Color.parseColor("#ec063d"),
-            Color.parseColor("#f1c704"),
-            Color.parseColor("#0000FF"),
-            Color.parseColor("#2bc208"),
-            Color.parseColor("#333333")};
+//    private int[] colorData = {Color.parseColor("#ec063d"),
+//            Color.parseColor("#f1c704"),
+//            Color.parseColor("#0000FF"),
+//            Color.parseColor("#2bc208"),
+//            Color.parseColor("#333333")};
 
+    List<Integer> colorData = new ArrayList<Integer>();
 
     List<Long>data = new ArrayList<Long>();
     List<String>stateChar = new ArrayList<String>();
@@ -73,6 +75,8 @@ public class Pie extends Activity {
         for (Map.Entry<String, Long> key: list) {
             stateChar.add(key.getKey());
             data.add(key.getValue());
+            String temp = color();
+            colorData.add(Color.parseColor(temp));
         }
         pie_chart = (PieChartView) findViewById(R.id.pie_chart);
         pie_chart.setOnValueTouchListener(selectListener);//设置点击事件监听
@@ -86,12 +90,7 @@ public class Pie extends Activity {
 
         for (int i = 0; i < data.size(); ++i) {
             SliceValue sliceValue;
-            if (i < 5) {
-                sliceValue = new SliceValue((float) data.get(i), colorData[i]);
-            }
-            else {
-                sliceValue = new SliceValue((float) data.get(i));
-            }
+            sliceValue = new SliceValue((float) data.get(i), colorData.get(i));
             values.add(sliceValue);
         }
     }
@@ -142,4 +141,20 @@ public class Pie extends Activity {
         result = String.format("%.2f", (float) data.get(i) * 100 / sum) + "%";
         return result;
     }
+    public String color() {
+        String red;
+        String green;
+        String blue;
+        Random random = new Random();
+        red = Integer.toHexString(random.nextInt(256)).toUpperCase();
+        green = Integer.toHexString(random.nextInt(256)).toUpperCase();
+        blue = Integer.toHexString(random.nextInt(256)).toUpperCase();
+
+        red = red.length()==1 ? "0" + red : red ;
+        green = green.length()==1 ? "0" + green : green ;
+        blue = blue.length()==1 ? "0" + blue : blue ;
+        String color = "#"+red+green+blue;
+        return color;
+    }
+
 }
