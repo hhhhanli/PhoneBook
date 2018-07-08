@@ -1,7 +1,9 @@
 package com.liye.mycontacts.myContacts;
 
+import android.app.AlertDialog;
 import android.app.ProgressDialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
@@ -9,13 +11,17 @@ import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v4.widget.DrawerLayout;
+import android.text.InputType;
 import android.text.TextUtils;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.CompoundButton;
+import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.ListView;
+import android.widget.Switch;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -32,6 +38,8 @@ import com.liye.mycontacts.utils.CommonUtil;
 import com.liye.mycontacts.utils.ContactInfo;
 import com.liye.mycontacts.utils.ContactsUtil;
 import com.liye.mycontacts.utils.PinyinComparator;
+import com.liye.onlineVoice.GlobalApplication;
+import com.liye.onlineVoice.OnlineVoiceManager;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -61,6 +69,7 @@ public class FirstFragment extends android.support.v4.app.Fragment {
     //////////////////////begin
     TextView mScanQrCode;
     public static final int GET_CODE = 0;
+    Switch onlineVoiceSwitch;
     ////////////////////end
 
     List<ContactInfo> contacts;
@@ -98,7 +107,7 @@ public class FirstFragment extends android.support.v4.app.Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.fragment_one, null);
+        final View view = inflater.inflate(R.layout.fragment_one, null);
         mContactsUtil = new ContactsUtil(mContext);
         contacts = mContactsUtil.select();
         Collections.sort(contacts, new PinyinComparator());
@@ -126,6 +135,42 @@ public class FirstFragment extends android.support.v4.app.Fragment {
         mScanQrCode = (TextView) view.findViewById(R.id.txt_scan_QrCode);
         mScanQrCode.setOnClickListener(new MyOnclickListener(this));
         //////////////end///////////
+
+        onlineVoiceSwitch = (Switch) view.findViewById(R.id.online_voice_switch);
+        onlineVoiceSwitch.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+
+            @Override
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+
+
+                if(isChecked){
+
+                    final EditText et = new EditText(view.getContext());
+                    et.setInputType(InputType.TYPE_CLASS_PHONE);
+                    et.setText(GlobalApplication.getLoginInfo());
+                    new AlertDialog.Builder(view.getContext()).setTitle("请输入本机号码")
+                            .setView(et)
+                            .setPositiveButton("确定", new DialogInterface.OnClickListener() {
+                                @Override
+                                public void onClick(DialogInterface dialog, int which) {
+                                    String local_phone = et.getText().toString();
+                                    if( !OnlineVoiceManager.getInstance().initialize(local_phone) ){
+                                        Toast.makeText(view.getContext(),"网络错误",Toast.LENGTH_SHORT).show();
+                                        onlineVoiceSwitch.setChecked(false);
+                                    }else GlobalApplication.setLoginInfo(local_phone);
+
+                                }
+                            }).setNegativeButton("取消", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialog, int which) {
+                            onlineVoiceSwitch.setChecked(false);
+                        }
+                    }).show();
+                }else{
+                    OnlineVoiceManager.getInstance().uninitialize();
+                }
+            }
+        });
 
         mSearchEditText = (SearchEditText) view.findViewById(R.id.edt_search);
         // 添加一个文本改变的监听事件

@@ -1,19 +1,32 @@
 package com.liye.mycontacts.menu;
 
+import android.app.AlertDialog;
 import android.app.ProgressDialog;
+import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.os.Bundle;
 import android.os.Handler;
+
+import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.Fragment;
+
 import android.support.v4.app.FragmentActivity;
+import android.support.v4.content.ContextCompat;
 import android.support.v4.widget.DrawerLayout;
+import android.telephony.TelephonyManager;
+import android.text.InputType;
 import android.text.TextUtils;
 import android.util.Log;
 import android.widget.Button;
+import android.widget.CompoundButton;
+import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.ListView;
+import android.widget.Switch;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -32,6 +45,8 @@ import com.liye.mycontacts.utils.CommonUtil;
 import com.liye.mycontacts.utils.ContactInfo;
 import com.liye.mycontacts.utils.ContactsUtil;
 import com.liye.mycontacts.utils.PinyinComparator;
+import com.liye.onlineVoice.GlobalApplication;
+import com.liye.onlineVoice.OnlineVoiceManager;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -39,6 +54,7 @@ import org.json.JSONObject;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashMap;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 
@@ -63,10 +79,13 @@ public class TelephoneActivity  extends FragmentActivity {
     Button mAddText;
     Button mCallphone;
 
-    //////////////////////begin
+    /////////begin
+    Switch onlineVoiceSwitch;
+    /////////////end
+
     Button mScanQrCode;
     public static final int GET_CODE = 0;
-    ////////////////////end
+
     ContactInfo mContactInfo;
     List<ContactInfo> contacts;
     ContactsUtil mContactsUtil;
@@ -95,6 +114,7 @@ public class TelephoneActivity  extends FragmentActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_telephone);
+
 
         // 显示进度条
         mProgressDialog = ProgressDialog.show(this, "请稍等", "数据正在加载......");
@@ -138,10 +158,46 @@ public class TelephoneActivity  extends FragmentActivity {
         mCallphone = (Button) this.findViewById(R.id.txt_call_phone);
         mCallphone.setOnClickListener(new MyOnclickListener(this));
 
-        ////////////begin/////
+
         mScanQrCode = (Button) this.findViewById(R.id.txt_scan_QrCode);
         mScanQrCode.setOnClickListener(new MyOnclickListener(this));
-        //////////////end///////////
+        ///////zhl
+        onlineVoiceSwitch = (Switch) this.findViewById(R.id.online_voice_switch);
+        onlineVoiceSwitch.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+
+            @Override
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+
+
+                if(isChecked){
+
+                    final EditText et = new EditText(TelephoneActivity.this);
+                    et.setInputType(InputType.TYPE_CLASS_PHONE);
+                    et.setText(GlobalApplication.getLoginInfo());
+                    new AlertDialog.Builder(TelephoneActivity.this).setTitle("请输入本机号码")
+                            .setView(et)
+                            .setPositiveButton("确定", new DialogInterface.OnClickListener() {
+                                @Override
+                                public void onClick(DialogInterface dialog, int which) {
+                                    String local_phone = et.getText().toString();
+                                    if( !OnlineVoiceManager.getInstance().initialize(local_phone) ){
+                                        Toast.makeText(TelephoneActivity.this,"网络错误",Toast.LENGTH_SHORT).show();
+                                        onlineVoiceSwitch.setChecked(false);
+                                    }else GlobalApplication.setLoginInfo(local_phone);
+
+                                }
+                            }).setNegativeButton("取消", new DialogInterface.OnClickListener() {
+                                @Override
+                                public void onClick(DialogInterface dialog, int which) {
+                                    onlineVoiceSwitch.setChecked(false);
+                                 }
+                            }).show();
+                }else{
+                    OnlineVoiceManager.getInstance().uninitialize();
+                }
+            }
+        });
+        //////////zhl
 
         mSearchEditText = (SearchEditText) this.findViewById(R.id.edt_search);
         // 添加一个文本改变的监听事件
@@ -233,6 +289,8 @@ public class TelephoneActivity  extends FragmentActivity {
             }
         }
     }
-    /////////////////end
+
+
+
 
 }

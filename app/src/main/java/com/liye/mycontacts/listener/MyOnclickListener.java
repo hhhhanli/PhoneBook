@@ -12,8 +12,13 @@ import com.liye.mycontacts.R;
 import com.liye.mycontacts.menu.TelephoneActivity;
 import com.liye.mycontacts.myContacts.AddPeopleActivity;
 import com.liye.mycontacts.myContacts.CallPhoneActivity;
+
+import com.liye.onlineVoice.GlobalApplication;
+import com.liye.onlineVoice.OnlineVoiceManager;
+
 import com.liye.mycontacts.myContacts.FirstFragment;
 import com.liye.mycontacts.myContacts.MainActivity;
+
 
 /**
  * Created by MK on 2016/4/8.
@@ -51,7 +56,7 @@ public class MyOnclickListener  implements View.OnClickListener{
                 this.fragment.getDra().openDrawer(Gravity.LEFT);
                 break;
 
-            /////////////begin
+            /////////////begin二维码
             case R.id.txt_scan_QrCode:
                 if(CommonUtil.isCameraCanUse()){
                     Intent intent_qr = new Intent(this.fragment.getCon(), CaptureActivity.class);
@@ -62,7 +67,6 @@ public class MyOnclickListener  implements View.OnClickListener{
                 }
                 break;
             ///////////////////end
-
 
         }
     }

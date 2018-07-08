@@ -70,6 +70,7 @@
         android:orientation="horizontal"
         android:weightSum="3.0">
 
+
         <TextView
             android:id="@+id/pe_item_one"
             android:layout_width="fill_parent"

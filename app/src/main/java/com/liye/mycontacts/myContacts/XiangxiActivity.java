@@ -2,15 +2,19 @@ package com.liye.mycontacts.myContacts;
 
 import android.app.Activity;
 import android.app.AlertDialog;
+import android.app.Application;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.Color;
 import android.net.Uri;
 import android.os.Bundle;
+
 import android.support.v4.app.Fragment;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.ActionBarActivity;
+import android.os.Looper;
+
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -27,6 +31,9 @@ import com.liye.mycontacts.menu.TelephoneActivity;
 import com.liye.mycontacts.utils.CommonUtil;
 import com.liye.mycontacts.utils.ContactInfo;
 import com.liye.mycontacts.utils.ContactsUtil;
+import com.liye.onlineVoice.GlobalApplication;
+import com.liye.onlineVoice.OnlineVoiceManager;
+import com.liye.onlineVoice.VoiceControlActivity;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -38,6 +45,10 @@ public class XiangxiActivity extends ActionBarActivity implements OnClickListene
 	TextView mName;
 	ContactsUtil mContactsUtil;
 	////////////////begin
+
+
+//	TextView mEditContact, mDeleteContact, mSendDesk,mShowQrCode;
+
 	//////////////end
 	ContactInfo contactInfo;
 
@@ -162,7 +173,35 @@ public class XiangxiActivity extends ActionBarActivity implements OnClickListene
 
 		mName = (TextView) this.findViewById(R.id.txt_show_name3);
 		mName.setText(contactInfo.getName());
+
+//		mPhone = (TextView) this.findViewById(R.id.txt_show_phone3);
+//		mPhone.setText(contactInfo.getPhone());
+//		mEmail = (TextView) this.findViewById(R.id.txt_show_email3);
+//		mEmail.setText(contactInfo.getEmail());
+//		mAddress = (TextView) this.findViewById(R.id.txt_show_address3);
+//		mAddress.setText(contactInfo.getAddress());
+
+
+//		mEditContact = (TextView) this.findViewById(R.id.edit_contact3);
+//		mEditContact.setOnClickListener(this);
+//		mDeleteContact = (TextView) this.findViewById(R.id.delete_contact3);
+//		mDeleteContact.setOnClickListener(this);
+//		mSendDesk = (TextView) this.findViewById(R.id.send_desk3);
+//		mSendDesk.setOnClickListener(this);
+
+		///////////////begin
+//		mShowQrCode = (TextView) this.findViewById(R.id.show_QR_code);
+//		mShowQrCode.setOnClickListener(this);
+		/////////////end
+
+//		mCallPhone = (TextView) this.findViewById(R.id.callPhone);
+//		mCallPhone.setOnClickListener(this);
+
 		mContactsUtil = new ContactsUtil(this);
+
+
+
+
 
 	}
 
@@ -195,6 +234,9 @@ public class XiangxiActivity extends ActionBarActivity implements OnClickListene
 		@Override
 		public void onPageScrollStateChanged(int arg0) {
 		}
+
+
+
 
 		@Override
 		public void onPageScrolled(int arg0, float arg1, int arg2) {
