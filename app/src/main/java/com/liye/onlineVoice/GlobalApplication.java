@@ -11,6 +11,8 @@ import android.widget.Toast;
 
 import com.liye.mycontacts.R;
 
+import java.util.HashMap;
+import java.util.Map;
 /**
  * Created by zhanh on 2018/7/7.
  */
@@ -70,5 +72,12 @@ public class GlobalApplication extends Application {
         }
     }
 
-
+    private Map<String, Integer>sta1 = new HashMap<String, Integer>();
+    private Map<String, Long>sta2 = new HashMap<String, Long>();
+    public Map<String, Integer> getsta1() {
+        return sta1;
+    }
+    public Map<String, Long> getsta2() {
+        return sta2;
+    }
 }
