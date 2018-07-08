@@ -2,24 +2,49 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical" android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:id="@+id/item_calling">
+    android:id="@+id/item_calling"
+    android:layout_marginTop="10dp">
 
-    <!--免提-->
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/calling_hands_free"/>
-    <!--挂断-->
     <ImageView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:background="@drawable/hang_up"
+        android:textColor="@color/blue"
         android:id="@+id/calling_hang_up"
-        android:src="@drawable/hang_up"/>
-    <!--静音控制-->
-    <TextView
-        android:layout_width="wrap_content"
+        android:layout_gravity="center"
+        android:layout_centerHorizontal="true"
+        android:layout_width="80dp"
+        android:layout_height="75dp"
+        android:layout_marginTop="10dp" />
+    <!--挂断-->
+    <RelativeLayout
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/calling_mute"
-        />
+        android:gravity="center_horizontal"
+        android:layout_marginTop="-90dp">
+        <RelativeLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+            <!--免提-->
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="35dp"
+                android:textColor="@color/blue"
+                android:textSize="20dp"
+                android:id="@+id/calling_hands_free"/>
+
+            <!--静音控制-->
+            <TextView
+                android:layout_marginLeft="200dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="35dp"
+                android:textColor="@color/blue"
+                android:textSize="20dp"
+                android:id="@+id/calling_mute"
+                />
+
+        </RelativeLayout>
+    </RelativeLayout>
+
 
 </LinearLayout>

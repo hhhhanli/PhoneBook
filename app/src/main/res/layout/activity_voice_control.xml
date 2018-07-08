@@ -6,25 +6,43 @@
 
     <!--头像-->
     <ImageView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/remote_user_profile"/>
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:layout_marginTop="80dp"
+        android:layout_gravity="center"
+        android:id="@+id/remote_user_profile"
+        android:background="@drawable/telephone"/>
     <!--名字-->
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/remote_user_name"/>
+        android:layout_marginTop="20dp"
+        android:layout_gravity="center"
+        android:textSize="30dp"
+        android:textColor="@color/gray"
+        android:id="@+id/remote_user_name"
+        />
     <!--号码-->
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/remote_user_phone_num"/>
+        android:id="@+id/remote_user_phone_num"
+        android:layout_marginTop="10dp"
+        android:textSize="20dp"
+        android:layout_gravity="center"
+        android:textColor="@color/gray"
+        />
 
     <!--通话状态-->
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/voice_status"/>
+        android:layout_marginTop="10dp"
+        android:textSize="15dp"
+        android:layout_gravity="center"
+        android:id="@+id/voice_status"
+        android:textColor="@color/blue"
+        />
 
 
 </LinearLayout>

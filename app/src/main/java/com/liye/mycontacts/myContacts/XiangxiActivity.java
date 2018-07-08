@@ -7,9 +7,11 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.Color;
+import android.graphics.drawable.Drawable;
 import android.net.Uri;
 import android.os.Bundle;
 
+import android.support.annotation.DrawableRes;
 import android.support.v4.app.Fragment;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.ActionBarActivity;
@@ -20,6 +22,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.View.OnClickListener;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.PopupMenu;
 import android.widget.TextView;
@@ -52,8 +55,8 @@ public class XiangxiActivity extends ActionBarActivity implements OnClickListene
 	//////////////end
 	ContactInfo contactInfo;
 
-	private TextView pe_item_one;
-	private TextView pe_item_two;
+	private Button pe_item_one;
+	private Button pe_item_two;
 	private ViewPager peViewPager;
 	private XiangxiFirst oneFragment;
 	private XiangxiSecond twoFragment;
@@ -85,8 +88,8 @@ public class XiangxiActivity extends ActionBarActivity implements OnClickListene
 		adapter = new TabFragmentPagerAdapter(getSupportFragmentManager(), list);
 		peViewPager.setAdapter(adapter);
 		peViewPager.setCurrentItem(0);  //初始化显示第一个页面
-		pe_item_one.setBackgroundColor(Color.WHITE);
-		pe_item_one.setTextColor(Color.rgb(128,128,128));
+		pe_item_one.setBackground(getResources().getDrawable(R.drawable.xiangqing2));
+		pe_item_two.setBackground(getResources().getDrawable(R.drawable.jilu2));
 	}
 
 	public void show(View v){
@@ -168,8 +171,8 @@ public class XiangxiActivity extends ActionBarActivity implements OnClickListene
 		Bitmap circleBitmap = CommonUtil.createCircleImage(smallBitmap);
 		mIcon.setImageBitmap(circleBitmap);
 
-		pe_item_one = (TextView) findViewById(R.id.pe_item_one);
-		pe_item_two = (TextView) findViewById(R.id.pe_item_two);
+		pe_item_one = (Button) findViewById(R.id.xiangqing);
+		pe_item_two = (Button) findViewById(R.id.jilu);
 		peViewPager = (ViewPager) findViewById(R.id.peViewPager);
 
 		mName = (TextView) this.findViewById(R.id.txt_show_name3);
@@ -211,17 +214,13 @@ public class XiangxiActivity extends ActionBarActivity implements OnClickListene
 				break;
 			case R.id.tv_item_one:
 				peViewPager.setCurrentItem(0);
-				pe_item_one.setBackgroundColor(Color.WHITE);
-				pe_item_two.setBackgroundColor(Color.rgb(44,162,192));
-				pe_item_one.setTextColor(Color.rgb(128,128,128));
-				pe_item_two.setTextColor(Color.WHITE);
+				pe_item_one.setBackground(getResources().getDrawable(R.drawable.xiangqing2));
+				pe_item_two.setBackground(getResources().getDrawable(R.drawable.jilu2));
 				break;
 			case R.id.tv_item_two:
 				peViewPager.setCurrentItem(1);
-				pe_item_one.setBackgroundColor(Color.rgb(44,162,192));
-				pe_item_two.setBackgroundColor(Color.WHITE);
-				pe_item_two.setTextColor(Color.rgb(128,128,128));
-				pe_item_one.setTextColor(Color.WHITE);
+				pe_item_one.setBackground(getResources().getDrawable(R.drawable.xiangqing1));
+				pe_item_two.setBackground(getResources().getDrawable(R.drawable.jilu1));
 				break;
 		}
 
@@ -244,16 +243,12 @@ public class XiangxiActivity extends ActionBarActivity implements OnClickListene
 		public void onPageSelected(int arg0) {
 			switch (arg0) {
 				case 0:
-					pe_item_one.setBackgroundColor(Color.WHITE);
-					pe_item_two.setBackgroundColor(Color.rgb(44,162,192));
-					pe_item_one.setTextColor(Color.rgb(128,128,128));
-					pe_item_two.setTextColor(Color.WHITE);
+					pe_item_one.setBackground(getResources().getDrawable(R.drawable.xiangqing2));
+					pe_item_two.setBackground(getResources().getDrawable(R.drawable.jilu2));
 					break;
 				case 1:
-					pe_item_one.setBackgroundColor(Color.rgb(44,162,192));
-					pe_item_two.setBackgroundColor(Color.WHITE);
-					pe_item_two.setTextColor(Color.rgb(128,128,128));
-					pe_item_one.setTextColor(Color.WHITE);
+					pe_item_one.setBackground(getResources().getDrawable(R.drawable.xiangqing1));
+					pe_item_two.setBackground(getResources().getDrawable(R.drawable.jilu1));
 					break;
 			}
 		}
