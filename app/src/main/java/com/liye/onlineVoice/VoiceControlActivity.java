@@ -6,6 +6,7 @@ import android.media.AudioManager;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.ImageView;
@@ -32,6 +33,8 @@ public class VoiceControlActivity extends AppCompatActivity implements View.OnCl
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_voice_control);
+
+
 
         remote_user = getIntent().getParcelableExtra("contact");
         ImageView remote_user_profile =  (ImageView)findViewById(R.id.remote_user_profile);
@@ -61,8 +64,13 @@ public class VoiceControlActivity extends AppCompatActivity implements View.OnCl
             updateStatus(false);
         }
 
-        OnlineVoiceManager.getInstance().setCurrentVoiceControlContext(this);
+        if( !GlobalApplication.isInComing ) {
+            GlobalApplication.showMessage("对方已挂断");
+            voice_status.setText("对方已挂断");
+        }
 
+
+        OnlineVoiceManager.getInstance().setCurrentVoiceControlContext(this);
 
 
     }
@@ -104,9 +112,12 @@ public class VoiceControlActivity extends AppCompatActivity implements View.OnCl
                 else hangs_free.setText("免提");
             }
         });
+
+
         mute = (TextView)findViewById(R.id.calling_mute);
         mute.setText("静音");
-        am.setSpeakerphoneOn(false);
+
+        am.setMicrophoneMute(false);
         mute.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -116,10 +127,14 @@ public class VoiceControlActivity extends AppCompatActivity implements View.OnCl
             }
         });
 
+
         calling_huang_up = (ImageView)findViewById(R.id.calling_hang_up);
         calling_huang_up.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                VoiceControlActivity.this.setVolumeControlStream(AudioManager.USE_DEFAULT_STREAM_TYPE);
+                finish();
+                OnlineVoiceManager.getInstance().voice_control_context=null;
                 OnlineVoiceManager.getInstance().huang_up();
             }
         });
@@ -139,7 +154,9 @@ public class VoiceControlActivity extends AppCompatActivity implements View.OnCl
         answering_huang_up.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                GlobalApplication.stopRing();
+                VoiceControlActivity.this.setVolumeControlStream(AudioManager.USE_DEFAULT_STREAM_TYPE);
+                finish();
+                OnlineVoiceManager.getInstance().voice_control_context=null;
                 OnlineVoiceManager.getInstance().huang_up();
             }
         });
@@ -147,7 +164,6 @@ public class VoiceControlActivity extends AppCompatActivity implements View.OnCl
         answering_pick_up.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                GlobalApplication.stopRing();
                 OnlineVoiceManager.getInstance().pick_up();
                 switchAnsweringToCalling(true);
                 updateStatus(true);
@@ -156,6 +172,9 @@ public class VoiceControlActivity extends AppCompatActivity implements View.OnCl
     }
     public void switchAnsweringToCalling( boolean target){
         calling_or_answering = target;
+
+
+
         if(calling_or_answering){
             answering_huang_up.setVisibility(View.GONE);
             answering_pick_up.setVisibility(View.GONE);
@@ -163,13 +182,21 @@ public class VoiceControlActivity extends AppCompatActivity implements View.OnCl
             calling_huang_up.setVisibility(View.VISIBLE);
             mute.setVisibility(View.VISIBLE);
             hangs_free.setVisibility(View.VISIBLE);
-        }else{
-            answering_huang_up.setVisibility(View.VISIBLE);
-            answering_pick_up.setVisibility(View.VISIBLE);
 
-            calling_huang_up.setVisibility(View.GONE);
-            mute.setVisibility(View.GONE);
-            hangs_free.setVisibility(View.GONE);
+        }else{
+            if( !GlobalApplication.isInComing ) {
+                switchAnsweringToCalling(true);
+
+            }else{
+                answering_huang_up.setVisibility(View.VISIBLE);
+                answering_pick_up.setVisibility(View.VISIBLE);
+
+                calling_huang_up.setVisibility(View.GONE);
+                mute.setVisibility(View.GONE);
+                hangs_free.setVisibility(View.GONE);
+            }
+
+
         }
     }
 

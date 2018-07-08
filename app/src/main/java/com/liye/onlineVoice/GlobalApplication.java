@@ -22,15 +22,16 @@ public class GlobalApplication extends Application {
     private static SoundPool soundPool;
     private static int streamId;
     private static Handler handler ;
+    public   static boolean isInComing;
     @Override
     public void onCreate() {
-
+        isInComing = false;
         db = getSharedPreferences("login",MODE_PRIVATE);
         isLogin=false;
         context = getApplicationContext();
         soundPool = new SoundPool(1, AudioManager.STREAM_MUSIC,5);
         soundPool.load(context,R.raw.incomingring,1);
-
+        streamId = -1;
         handler = new Handler(){
             @Override
             public void handleMessage(Message msg) {
@@ -62,7 +63,11 @@ public class GlobalApplication extends Application {
         streamId =  soundPool.play(1,1,1,0,-1,1);
     }
     public static void stopRing(){
-        soundPool.stop(streamId);
+        if(streamId!=-1)
+        {
+            soundPool.stop(streamId);
+            streamId=-1;
+        }
     }
 
 

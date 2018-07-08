@@ -91,7 +91,7 @@ public class OnlineVoiceManager {
         sinchClient.startListeningOnActiveConnection();
         sinchClient.start();
         sinchClient.getCallClient().addCallClientListener(new SinchCallClientListener());
-        GlobalApplication.isLogin=true;
+
         return true;
     }
 
@@ -102,38 +102,56 @@ public class OnlineVoiceManager {
         @Override
         public void onCallEnded(Call call) {
             //no current call
+            GlobalApplication.isInComing=false;
+            GlobalApplication.stopRing();
+
             currentCall = null;
             //volume buttons go back to controlling ringtone volume
             try {
-                voice_control_context.setVolumeControlStream(AudioManager.USE_DEFAULT_STREAM_TYPE);
-                voice_control_context.finish();
+                if(voice_control_context!=null){
+                    voice_control_context.setVolumeControlStream(AudioManager.USE_DEFAULT_STREAM_TYPE);
+                    voice_control_context.finish();
+                    GlobalApplication.showMessage("对方已挂断");
+                }
                 remote_user=null;
             }catch (Exception e){
              Log.d(e.toString(),e.toString());
             }
-            GlobalApplication.showMessage("已挂断");
+
         }
 
         //recipient picks up the call
         @Override
         public void onCallEstablished(Call call) {
+            GlobalApplication.stopRing();
 
             //ringtone volume buttons now control the speaker volume
-           voice_control_context.setVolumeControlStream(AudioManager.STREAM_VOICE_CALL);
-
+          if(voice_control_context!=null) {
+              voice_control_context.updateStatus(true);
+              voice_control_context.setVolumeControlStream(AudioManager.STREAM_VOICE_CALL);
+          }
         }
 
         //when call is "ringing"
         @Override
         public void onCallProgressing(Call call) {
-            voice_control_context.updateStatus(true);
+
+
 //            hangupButton.setText("Ringing");
 
         }
 
+
         //don't worry about this for now
         @Override
-        public void onShouldSendPushNotification(Call call, List<PushPair> pushPairs) {}
+        public void onShouldSendPushNotification(Call call, List<PushPair> pushPairs) {
+            GlobalApplication.showMessage("对方不在线");
+            if(voice_control_context!=null) {
+                voice_control_context.finish();
+                remote_user=null;
+                GlobalApplication.isInComing=false;
+            }
+        }
     }
 
     //you'll attach an instance of this to the Sinch client
@@ -147,10 +165,13 @@ public class OnlineVoiceManager {
                 currentCall.addCallListener(new SinchCallListener());
 
                 ContactInfo contact = new ContactsUtil(global_context).findContactInfo(currentCall.getRemoteUserId());
+
                 if(contact != null){
-                    GlobalApplication.playRing();
+
                     remote_user = contact;
+                    GlobalApplication.playRing();
                     try{
+                        GlobalApplication.isInComing = true;
                         Intent intent = new Intent(global_context,VoiceControlActivity.class);
                         intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                         intent.putExtra("contact",remote_user);
@@ -162,8 +183,6 @@ public class OnlineVoiceManager {
                         GlobalApplication.showMessage("网络不稳定");
                         Log.d("inComingError",e.toString());
                     }
-
-
                 }
             }
         }
@@ -181,21 +200,26 @@ public class OnlineVoiceManager {
             return false;
 
         }
+        GlobalApplication.isLogin=true;
         return true;
     }
 
     private void leaveChannel(){
-        pubnub.unsubscribe("calling_channel");
+        if(GlobalApplication.isLogin  ){
+            pubnub.unsubscribe("calling_channel");
+        }
     }
 
     public void huang_up(){
         if(currentCall != null){
             currentCall.hangup();
+            GlobalApplication.showMessage("已挂断");
         }
     }
     public void pick_up(){
         if(currentCall != null) currentCall.answer();
     }
+
     public boolean call_up(ContactInfo contact){
 
         if(currentCall == null){
@@ -209,6 +233,8 @@ public class OnlineVoiceManager {
                         JSONArray result = jsonMessage.getJSONArray("channels");
 
                         if(result.length() ==1 && result.getString(0).equals(CHANNEL)){
+                            GlobalApplication.isInComing=true;
+
                             Intent voiceIntent = new Intent(global_context,
                                     VoiceControlActivity.class);
                             voiceIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
@@ -249,33 +275,28 @@ public class OnlineVoiceManager {
         GlobalApplication.isLogin=false;
     }
 
-    ///is SIM card valid
-    public boolean isSIMValid(){
 
-        TelephonyManager tManager = (TelephonyManager)global_context.getSystemService(Context.TELEPHONY_SERVICE);
-        return tManager.getSimState() == TelephonyManager.SIM_STATE_READY;
-    }
-    public String getPhoneNum(){
-        final EditText et = new EditText(global_context);
-        new AlertDialog.Builder(global_context).setTitle("请输入手机号码")
-                .setView(et)
-                .setPositiveButton("确定", new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialog, int which) {
-
-                    }
-                }).setNegativeButton("取消", new DialogInterface.OnClickListener() {
-            @Override
-            public void onClick(DialogInterface dialog, int which) {
-
-            }
-        }).show();
-
-        TelephonyManager tManager=(TelephonyManager) global_context.getSystemService(Context.TELEPHONY_SERVICE);
-
-
-        return tManager.getLine1Number();
-    }
+//    public String getPhoneNum(){
+//        final EditText et = new EditText(global_context);
+//        new AlertDialog.Builder(global_context).setTitle("请输入手机号码")
+//                .setView(et)
+//                .setPositiveButton("确定", new DialogInterface.OnClickListener() {
+//                    @Override
+//                    public void onClick(DialogInterface dialog, int which) {
+//
+//                    }
+//                }).setNegativeButton("取消", new DialogInterface.OnClickListener() {
+//            @Override
+//            public void onClick(DialogInterface dialog, int which) {
+//
+//            }
+//        }).show();
+//
+//        TelephonyManager tManager=(TelephonyManager) global_context.getSystemService(Context.TELEPHONY_SERVICE);
+//
+//
+//        return tManager.getLine1Number();
+//    }
 
     ///////////////zhl
 }

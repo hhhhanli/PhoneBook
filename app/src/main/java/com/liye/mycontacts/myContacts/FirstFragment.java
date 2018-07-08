@@ -139,11 +139,8 @@ public class FirstFragment extends android.support.v4.app.Fragment {
         onlineVoiceSwitch = (Switch) view.findViewById(R.id.online_voice_switch);
         onlineVoiceSwitch.setChecked(GlobalApplication.isLogin);
         onlineVoiceSwitch.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
-
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-
-
                 if(isChecked){
 
                     final EditText et = new EditText(view.getContext());
