@@ -257,23 +257,21 @@ public class FirstFragment extends android.support.v4.app.Fragment {
                 Toast.makeText(mContext,"二维码名片格式错误",Toast.LENGTH_SHORT).show();
             }
         }
-        /*else if(requestCode == GlobalApplication.ADD_CONTACT_START && resultCode == GlobalApplication.ADD_CONTACT_END) {
+        else if(requestCode == GlobalApplication.ADD_CONTACT_START && resultCode == GlobalApplication.ADD_CONTACT_END) {
             Toast.makeText(mContext,"add返回mainactivity",Toast.LENGTH_LONG).show();
-            ContactInfo newContact = new ContactInfo();
-            newContact.setName(data.getStringExtra("name"));
-            newContact.setPhone(data.getStringExtra("phone"));
-            newContact.setAddress(data.getStringExtra("address"));
-            newContact.setEmail(data.getStringExtra("email"));
 
-            GlobalApplication.addContacts(newContact);
             //contacts.add(newContact);
             Collections.sort(contacts, new PinyinComparator());
 
             //adapter.addContact(newContact);
             adapter.notifyDataSetChanged();
+            mList.setAdapter(adapter);
         }
         else if (requestCode == GlobalApplication.DELETE_CONTACT_START && resultCode == GlobalApplication.DELETE_CONTACT_END) {
             Toast.makeText(mContext,"delete返回mainactivity",Toast.LENGTH_LONG).show();
-        }*/
+            contacts = GlobalApplication.getContacts();
+            adapter.notifyDataSetChanged();
+            mList.setAdapter(adapter);
+        }
     }
 }

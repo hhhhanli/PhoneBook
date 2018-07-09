@@ -74,7 +74,13 @@ public class GlobalApplication extends Application {
     public static void addContacts(ContactInfo newContact) {
         contacts.add(newContact);
     }
-
+    public static void deleteContact(ContactInfo newContact) {
+        for (int i = 0; i < contacts.size();i++) {
+            if(contacts.get(i).getContactId() == newContact.getContactId()) {
+                contacts.remove(i);
+            }
+        }
+    }
     public static Context getContext(){
         return context;
     }
@@ -83,6 +89,9 @@ public class GlobalApplication extends Application {
         SharedPreferences.Editor editor = db.edit();
         editor.putString("phone",info);
         editor.commit();
+    }
+    public static ContactsUtil getmContactsUtil() {
+        return mContactsUtil;
     }
     public static String getLoginInfo(){
         String res =db.getString("phone","");

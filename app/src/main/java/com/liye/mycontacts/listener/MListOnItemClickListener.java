@@ -9,6 +9,7 @@ import com.liye.mycontacts.myContacts.FirstFragment;
 import com.liye.mycontacts.myContacts.MainActivity;
 import com.liye.mycontacts.myContacts.XiangxiActivity;
 import com.liye.mycontacts.utils.ContactInfo;
+import com.liye.onlineVoice.GlobalApplication;
 
 /**
  * Created by MK on 2016/4/8.
@@ -27,9 +28,9 @@ public class MListOnItemClickListener  implements AdapterView.OnItemClickListene
     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
         ContactInfo contact = this.fragment.adapter.getItem(position);
         //  Log.e(this + "", contact.getAddress() + " contact=" + contact);
-        Intent intent = new Intent(this.fragment.getCon(),
-                XiangxiActivity.class);
+        Intent intent = new Intent(this.fragment.getCon(), XiangxiActivity.class);
         intent.putExtra("contact", contact);
-        this.fragment.getCon().startActivity(intent);
+        //this.fragment.getCon().startActivity(intent);
+        this.fragment.startActivityForResult(intent, GlobalApplication.DELETE_CONTACT_START);
     }
 }

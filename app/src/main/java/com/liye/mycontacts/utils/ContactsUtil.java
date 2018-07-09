@@ -293,6 +293,9 @@ public class ContactsUtil {
 	/*
 	 * 查询联系人
 	 */
+	public ContentResolver getmContentResolver() {
+		return mContentResolver;
+	}
 	public List<ContactInfo> select() {
 		contacts = new ArrayList<ContactInfo>();
 		//拿到联系人的uri =ContactsContract.Contacts.CONTENT_URI;

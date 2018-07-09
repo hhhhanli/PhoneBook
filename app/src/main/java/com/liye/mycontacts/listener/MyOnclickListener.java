@@ -41,8 +41,8 @@ public class MyOnclickListener  implements View.OnClickListener{
             case R.id.txt_add_contact:
                 Intent intent = new Intent(this.fragment.getCon(),
                         AddPeopleActivity.class);
-                this.fragment.getCon().startActivity(intent);
-                //fragment.startActivityForResult(intent, GlobalApplication.ADD_CONTACT_START);
+                //this.fragment.getCon().startActivity(intent);
+                fragment.startActivityForResult(intent, GlobalApplication.ADD_CONTACT_START);
                 break;
             //拨打电话的按钮
             case R.id.txt_call_phone:

@@ -121,10 +121,11 @@ public class XiangxiActivity extends ActionBarActivity implements OnClickListene
 							@Override
 							public void onClick(DialogInterface dialog, int which) {
 
-								mContactsUtil.delete(contactInfo.getContactId());
-								Intent delete = new Intent(XiangxiActivity.this,
-										MainActivity.class);
-								startActivity(delete);
+								GlobalApplication.getmContactsUtil().delete(contactInfo.getContactId());
+								GlobalApplication.deleteContact(contactInfo);
+								//Intent delete = new Intent(XiangxiActivity.this, MainActivity.class);
+								Intent delete = new Intent(XiangxiActivity.this, MainActivity.class);
+								setResult(GlobalApplication.DELETE_CONTACT_END, delete);
 								//startActivityForResult(delete, GlobalApplication.DELETE_CONTACT_START);
 								finish();
 							}
