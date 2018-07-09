@@ -77,6 +77,7 @@ public class GlobalApplication extends Application {
     public Map<String, Integer> getsta1() {
         return sta1;
     }
+
     public Map<String, Long> getsta2() {
         return sta2;
     }
