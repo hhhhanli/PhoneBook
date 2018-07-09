@@ -17,6 +17,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.CompoundButton;
 import android.widget.EditText;
 import android.widget.ImageView;
@@ -70,7 +71,7 @@ public class FirstFragment extends android.support.v4.app.Fragment {
     //////////////////////begin
     TextView mScanQrCode;
     public static final int GET_CODE = 0;
-    Switch onlineVoiceSwitch;
+    Button onlineVoiceSwitch;
     ////////////////////end
 
     List<ContactInfo> contacts;
@@ -135,37 +136,33 @@ public class FirstFragment extends android.support.v4.app.Fragment {
         mScanQrCode.setOnClickListener(new MyOnclickListener(this));
         //////////////end///////////
 
-        onlineVoiceSwitch = (Switch) view.findViewById(R.id.online_voice_switch);
-        onlineVoiceSwitch.setChecked(GlobalApplication.isLogin);
-        onlineVoiceSwitch.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+        onlineVoiceSwitch = (Button) view.findViewById(R.id.online_voice_switch);
+        onlineVoiceSwitch.setBackground(getResources().getDrawable(R.drawable.fou));
+        onlineVoiceSwitch.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-                if(isChecked){
+            public void onClick(final View view) {
+                onlineVoiceSwitch.setBackground(getResources().getDrawable(R.drawable.shi));
+                final EditText et = new EditText(view.getContext());
+                et.setInputType(InputType.TYPE_CLASS_PHONE);
+                et.setText(GlobalApplication.getLoginInfo());
+                new AlertDialog.Builder(view.getContext()).setTitle("请输入本机号码")
+                        .setView(et)
+                        .setPositiveButton("确定", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int which) {
+                                String local_phone = et.getText().toString();
+                                if( !OnlineVoiceManager.getInstance().initialize(local_phone) ){
+                                    Toast.makeText(view.getContext(),"网络错误",Toast.LENGTH_SHORT).show();
+                                    onlineVoiceSwitch.setBackground(getResources().getDrawable(R.drawable.fou));
+                                }else GlobalApplication.setLoginInfo(local_phone);
 
-                    final EditText et = new EditText(view.getContext());
-                    et.setInputType(InputType.TYPE_CLASS_PHONE);
-                    et.setText(GlobalApplication.getLoginInfo());
-                    new AlertDialog.Builder(view.getContext()).setTitle("请输入本机号码")
-                            .setView(et)
-                            .setPositiveButton("确定", new DialogInterface.OnClickListener() {
-                                @Override
-                                public void onClick(DialogInterface dialog, int which) {
-                                    String local_phone = et.getText().toString();
-                                    if( !OnlineVoiceManager.getInstance().initialize(local_phone) ){
-                                        Toast.makeText(view.getContext(),"网络错误",Toast.LENGTH_SHORT).show();
-                                        onlineVoiceSwitch.setChecked(false);
-                                    }else GlobalApplication.setLoginInfo(local_phone);
-
-                                }
-                            }).setNegativeButton("取消", new DialogInterface.OnClickListener() {
-                        @Override
-                        public void onClick(DialogInterface dialog, int which) {
-                            onlineVoiceSwitch.setChecked(false);
-                        }
-                    }).show();
-                }else{
-                    OnlineVoiceManager.getInstance().uninitialize();
-                }
+                            }
+                        }).setNegativeButton("取消", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        onlineVoiceSwitch.setBackground(getResources().getDrawable(R.drawable.fou));
+                    }
+                }).show();
             }
         });
 
@@ -246,11 +243,12 @@ public class FirstFragment extends android.support.v4.app.Fragment {
 
                     return ;
                 }else{
+                    /////////////////////////////////////////////////////////////////////////////////////////////////////
                     Intent intent = new Intent(mContext,
                             AddPeopleActivity.class);
-                    Log.d("infooo1",scanResult);
                     intent.putExtra("contactInfo",scanResult);
-                    startActivity(intent);
+                    startActivityForResult(intent, GlobalApplication.ADD_CONTACT_START);
+
                 }
             } catch (JSONException e) {
                 e.printStackTrace();
@@ -258,7 +256,9 @@ public class FirstFragment extends android.support.v4.app.Fragment {
             }
         }
         else if(requestCode == GlobalApplication.ADD_CONTACT_START && resultCode == GlobalApplication.ADD_CONTACT_END) {
-            Toast.makeText(mContext,"add返回mainactivity",Toast.LENGTH_LONG).show();
+
+            Toast.makeText(mContext,"添加成功",Toast.LENGTH_SHORT).show();
+//            Toast.makeText(mContext,"add返回mainactivity",Toast.LENGTH_LONG).show();
 
             //contacts.add(newContact);
             Collections.sort(contacts, new PinyinComparator());
@@ -268,7 +268,8 @@ public class FirstFragment extends android.support.v4.app.Fragment {
             mList.setAdapter(adapter);
         }
         else if (requestCode == GlobalApplication.DELETE_CONTACT_START && resultCode == GlobalApplication.DELETE_CONTACT_END) {
-            Toast.makeText(mContext,"delete返回mainactivity",Toast.LENGTH_LONG).show();
+            Toast.makeText(mContext,"删除成功",Toast.LENGTH_SHORT).show();
+//            Toast.makeText(mContext,"delete返回mainactivity",Toast.LENGTH_LONG).show();
             contacts = GlobalApplication.getContacts();
             adapter.notifyDataSetChanged();
             mList.setAdapter(adapter);

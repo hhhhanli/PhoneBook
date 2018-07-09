@@ -81,6 +81,20 @@ public class GlobalApplication extends Application {
             }
         }
     }
+    public static String correctName(String name) {
+        String result = name;
+        //去除空格
+        if(name.length() != 1) {
+            result.trim();
+        }
+
+        /*for(int i = 0; i < name.length(); i++) {
+            if(name.indexOf(i) >= 'A' && name.indexOf(i) <= 'z') {
+                result = name.substring(i);
+            }
+        }*/
+        return result;
+    }
     public static Context getContext(){
         return context;
     }
@@ -96,6 +110,15 @@ public class GlobalApplication extends Application {
     public static String getLoginInfo(){
         String res =db.getString("phone","");
         return res;
+    }
+    public static ContactInfo findContactInfo(String phone){
+        if(phone==null) return  null;
+        phone = phone.replace(" ","");
+        for (int i = 0; i< contacts.size(); i++){
+            if(contacts.get(i)!=null && contacts.get(i).getPhone() != null &&  phone.equals( contacts.get(i).getPhone().toString().replace(" ","" ) ) ) return contacts.get(i);
+
+        }
+        return null;
     }
     public static void showMessage( String msg){
         Message m = handler.obtainMessage();
@@ -120,6 +143,7 @@ public class GlobalApplication extends Application {
     public Map<String, Integer> getsta1() {
         return sta1;
     }
+
     public Map<String, Long> getsta2() {
         return sta2;
     }

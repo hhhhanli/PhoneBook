@@ -238,6 +238,8 @@ public class ContactsUtil {
 		}
 	}
 
+	//输入手机号码，查找该用户，返回 ContactInfo类型
+	//如果没有该用户 返回null
 	public ContactInfo findContactInfo(String phone){
 		phone = phone.replace(" ","");
 		Cursor contactsCursor = mContentResolver.query(
@@ -334,6 +336,9 @@ public class ContactsUtil {
 				getContactAddress(rawContactId, contact);
 			//	Log.e(this + "", "contact=" + contact);
 				// 将联系人添加到集合里
+				//if(contact.getSortFirstWord().indexOf(0) < 'A' || contact.getSortFirstWord().indexOf(0) > 'z') {
+				//	continue;
+				//}
 				contacts.add(contact);
 			}
 
