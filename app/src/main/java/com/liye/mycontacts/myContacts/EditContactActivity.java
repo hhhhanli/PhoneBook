@@ -156,7 +156,7 @@ public class EditContactActivity extends Activity implements OnClickListener {
 				break;
 			case R.id.btn_cancel1:
 				Intent cancel = new Intent(EditContactActivity.this,
-						TelephoneActivity.class);
+						MainActivity.class);
 				startActivity(cancel);
 				finish();
 

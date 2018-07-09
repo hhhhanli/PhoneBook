@@ -7,6 +7,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.liye.mycontacts.R;
@@ -52,6 +53,7 @@ public class PeCalllogAdapter extends BaseAdapter {
         TextView tv_duration = (TextView) view.findViewById(R.id.ptv_duration);
         TextView tv_date = (TextView) view.findViewById(R.id.ptv_date);
         TextView tv_type = (TextView) view.findViewById(R.id.ptv_type);
+        ImageView tv_photo = (ImageView)  view.findViewById(R.id.ptv_photo);
         CallLogInfo info = infos.get(position);
         tv_duration.setText(String.valueOf(info.calltime));
         SimpleDateFormat format = new SimpleDateFormat(
@@ -63,14 +65,17 @@ public class PeCalllogAdapter extends BaseAdapter {
         switch (info.type) {
             case CallLog.Calls.INCOMING_TYPE:
                 typeStr = "来电";
-                color = Color.BLUE;
+                tv_photo.setImageResource(R.drawable.callin);
+                color = Color.GRAY;
                 break;
             case CallLog.Calls.OUTGOING_TYPE:
                 typeStr = "去电";
-                color = Color.GREEN;
+                tv_photo.setImageResource(R.drawable.callout);
+                color = Color.GRAY;
                 break;
             case CallLog.Calls.MISSED_TYPE:
                 typeStr = "未接";
+                tv_photo.setImageResource(R.drawable.callin);
                 color = Color.RED;
                 break;
 

@@ -324,7 +324,8 @@ public class ContactsUtil {
 				// 获取联系人的头像
 				getIconByContactId(contactId, contact);
 				// 根据id获取联系人的名字
-				getContactName(rawContactId, contact);
+				boolean flag = getContactName(rawContactId, contact);
+				if (!flag) continue;
 				// 获取手机号码
 				getContactPhone(rawContactId, contact);
 				// 获取邮箱
@@ -382,7 +383,7 @@ public class ContactsUtil {
 	/*
   *
   */
-	public void  getContactName(int rawContactId, ContactInfo contact) {
+	public boolean  getContactName(int rawContactId, ContactInfo contact) {
 		// data
 		// 从data表查询所有的
 		// 条件 rawId=? and mimeType=?
@@ -402,12 +403,15 @@ public class ContactsUtil {
 			// 添加联系人的姓名
 			contact.setName(contactName);
 			//Log.e(this + "", "contactName=" + contact.getName());
+			String pinyin = CharacterParser.getInstance().getSelling(contactName);
+			if(pinyin.length() == 0) return false;
 
 			String fw = getFirstWord(contactName);
 			contact.setSortFirstWord(fw);// 排序的首字母
 
 		}
 		dataCuror.close();
+		return true;
 	}
 
 	// 获取联系人姓名的首字母
