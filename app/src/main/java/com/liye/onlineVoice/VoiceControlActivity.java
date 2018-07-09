@@ -2,6 +2,7 @@ package com.liye.onlineVoice;
 
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Paint;
 import android.media.AudioManager;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -103,27 +104,46 @@ public class VoiceControlActivity extends AppCompatActivity implements View.OnCl
         lin.addView(layout);
         hangs_free = (TextView)findViewById(R.id.calling_hands_free);
         hangs_free.setText("免提");
+
+        hangs_free.setPaintFlags(hangs_free.getPaintFlags() & Paint.STRIKE_THRU_TEXT_FLAG);
+
         am.setSpeakerphoneOn(false);
         hangs_free.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                am.setSpeakerphoneOn(!am.isSpeakerphoneOn());
-                if("免提".equals(hangs_free.getText())) hangs_free.setText("听筒");
-                else hangs_free.setText("免提");
+                if(am.isSpeakerphoneOn()){
+                    am.setSpeakerphoneOn(false);
+                    hangs_free.setPaintFlags( hangs_free.getPaintFlags() & (~Paint.STRIKE_THRU_TEXT_FLAG));
+                }else{
+                    am.setSpeakerphoneOn(true);
+                    hangs_free.setPaintFlags(hangs_free.getPaintFlags() | Paint.STRIKE_THRU_TEXT_FLAG);
+                }
+//                if(hangs_free.getPaintFlags() == Paint.STRIKE_THRU_TEXT_FLAG) hangs_free.getPaint().setFlags(16);
+//                else hangs_free.getPaint().setFlags(1281);
+//                if("免提".equals(hangs_free.getText())) hangs_free.setText("听筒");
+//                else hangs_free.setText("免提");
             }
         });
 
 
         mute = (TextView)findViewById(R.id.calling_mute);
         mute.setText("静音");
+        mute.getPaint().setFlags(mute.getPaintFlags() & Paint.STRIKE_THRU_TEXT_FLAG);
+
 
         am.setMicrophoneMute(false);
         mute.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                am.setMicrophoneMute(!am.isMicrophoneMute());
-                if("静音".equals(mute.getText())) mute.setText("关闭静音");
-                else mute.setText("静音");
+
+                if(am.isMicrophoneMute()){
+                    am.setMicrophoneMute(false);
+                    mute.setPaintFlags(mute.getPaintFlags() & (~Paint.STRIKE_THRU_TEXT_FLAG) );
+                }else{
+                    am.setMicrophoneMute(true);
+                    mute.setPaintFlags(mute.getPaintFlags() | Paint.STRIKE_THRU_TEXT_FLAG);
+                }
+
             }
         });
 
