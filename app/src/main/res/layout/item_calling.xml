@@ -11,7 +11,7 @@
         android:id="@+id/calling_hang_up"
         android:layout_gravity="center"
         android:layout_centerHorizontal="true"
-        android:layout_width="80dp"
+        android:layout_width="75dp"
         android:layout_height="75dp"
         android:layout_marginTop="10dp" />
     <!--挂断-->

@@ -7,16 +7,16 @@
 
     <!--挂断-->
     <ImageView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="75dp"
+        android:layout_height="75dp"
         android:id="@+id/answering_huang_up"
         android:src="@drawable/hang_up"/>
 
     <!--接听-->
     <ImageView
         android:layout_marginLeft="120dp"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="75dp"
+        android:layout_height="75dp"
         android:id="@+id/answering_pick_up"
         android:src="@drawable/pick_up"/>
 
