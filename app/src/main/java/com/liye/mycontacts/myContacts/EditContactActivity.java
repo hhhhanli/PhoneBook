@@ -155,24 +155,40 @@ public class EditContactActivity extends Activity implements OnClickListener {
 
 				break;
 			case R.id.btn_cancel1:
-				Intent cancel = new Intent(EditContactActivity.this,
+				/*Intent cancel = new Intent(EditContactActivity.this,
 						TelephoneActivity.class);
-				startActivity(cancel);
+				startActivity(cancel);*/
 				finish();
 
 				break;
 
 			case R.id.btn_save1:
+				boolean flag = true;
 				// 保存
-				if (null == mEdtName) {
+				if (mEdtName == null) {
 					Toast.makeText(this, "名字不能为空", Toast.LENGTH_LONG).show();
-				} else {
+					flag = false;
+				}
+				if (mEdtName.getText().toString().charAt(0) < 'A' || mEdtName.getText().toString().charAt(0) > 'z') {
+					Toast.makeText(this, "请以字母开头", Toast.LENGTH_LONG).show();
+					flag = false;
+				}
+				String phoneNumber = mEdtPhone.getText().toString();
+				for(int i = 0; i < phoneNumber.length(); i++) {
+					if(phoneNumber.charAt(i) < '0' || phoneNumber.charAt(i) > '9') {
+						flag = false;
+						Toast.makeText(this, "号码不能含有非数字", Toast.LENGTH_LONG).show();
+						break;
+					}
+				}
+				if(flag) {
 					changeContact();
 					Intent intent = new Intent(EditContactActivity.this,
 							MainActivity.class);
 					startActivity(intent);
 					finish();
 				}
+
 				break;
 
 		}

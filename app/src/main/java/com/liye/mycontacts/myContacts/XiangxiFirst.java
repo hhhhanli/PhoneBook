@@ -103,11 +103,14 @@ public class XiangxiFirst extends android.support.v4.app.Fragment implements Vie
                             @Override
                             public void onClick(DialogInterface dialog, int which) {
 
-                                mContactsUtil.delete(contactInfo.getContactId());
+                                GlobalApplication.getmContactsUtil().delete(contactInfo.getContactId());
                                 GlobalApplication.deleteContact(contactInfo);
                                 Intent delete = new Intent(mContext,MainActivity.class);
                                 //Intent intent = new Intent();
-                                startActivity(delete);
+                                ( (XiangxiActivity) mContext).setResult(GlobalApplication.DELETE_CONTACT_END,delete);
+                                ( (XiangxiActivity) mContext).finish();
+                                //startActivity(delete);
+
                             }
                         }
 
