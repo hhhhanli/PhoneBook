@@ -40,6 +40,7 @@ public class GlobalApplication extends Application {
     public static final int ADD_CONTACT_END = 101;
     public static final int DELETE_CONTACT_START = 103;
     public static final int DELETE_CONTACT_END = 104;
+    private static int main_num;
     @Override
     public void onCreate() {
         isInComing = false;
@@ -62,6 +63,7 @@ public class GlobalApplication extends Application {
     public static void inital(){
         infos = contactsMsgUtils.select();
         contacts = mContactsUtil.select();
+        main_num = 1;
     }
 
     public static List<CallLogInfo> getInfos() {
@@ -147,4 +149,7 @@ public class GlobalApplication extends Application {
     public Map<String, Long> getsta2() {
         return sta2;
     }
+
+    public static void setMain_num() {main_num += 1;}
+    public static int getMain_num() {return main_num;}
 }

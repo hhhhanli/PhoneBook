@@ -141,7 +141,7 @@ public class FirstFragment extends android.support.v4.app.Fragment {
         onlineVoiceSwitch.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(final View view) {
-                onlineVoiceSwitch.setBackground(getResources().getDrawable(R.drawable.shi));
+
                 final EditText et = new EditText(view.getContext());
                 et.setInputType(InputType.TYPE_CLASS_PHONE);
                 et.setText(GlobalApplication.getLoginInfo());
@@ -154,13 +154,20 @@ public class FirstFragment extends android.support.v4.app.Fragment {
                                 if( !OnlineVoiceManager.getInstance().initialize(local_phone) ){
                                     Toast.makeText(view.getContext(),"网络错误",Toast.LENGTH_SHORT).show();
                                     onlineVoiceSwitch.setBackground(getResources().getDrawable(R.drawable.fou));
-                                }else GlobalApplication.setLoginInfo(local_phone);
+                                }else {
+                                    GlobalApplication.setLoginInfo(local_phone);
+                                    GlobalApplication.isLogin=true;
+                                    onlineVoiceSwitch.setBackground(getResources().getDrawable(R.drawable.shi));
+                                }
 
                             }
                         }).setNegativeButton("取消", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
-                        onlineVoiceSwitch.setBackground(getResources().getDrawable(R.drawable.fou));
+                        if(GlobalApplication.isLogin){
+                            onlineVoiceSwitch.setBackground(getResources().getDrawable(R.drawable.fou));
+                            OnlineVoiceManager.getInstance().uninitialize();
+                        }
                     }
                 }).show();
             }

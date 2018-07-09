@@ -3,6 +3,7 @@ package com.liye.mycontacts.myContacts;
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.app.AlertDialog.Builder;
+import android.app.DatePickerDialog;
 import android.content.ContentResolver;
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -20,11 +21,13 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
+import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.Toast;
 
 import com.liye.mycontacts.R;
+import com.liye.mycontacts.adapter.DBManager;
 import com.liye.mycontacts.adapter.IconPagerAdapter;
 import com.liye.mycontacts.listener.MyOnclickListener;
 import com.liye.mycontacts.menu.TelephoneActivity;
@@ -32,12 +35,14 @@ import com.liye.mycontacts.utils.CharacterParser;
 import com.liye.mycontacts.utils.CommonUtil;
 import com.liye.mycontacts.utils.ContactInfo;
 import com.liye.mycontacts.utils.ContactsUtil;
+import com.liye.mycontacts.utils.FestivalInfo;
 import com.liye.onlineVoice.GlobalApplication;
 
 import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.List;
 
 public class AddPeopleActivity extends Activity implements OnClickListener {
@@ -48,6 +53,10 @@ public class AddPeopleActivity extends Activity implements OnClickListener {
 	EditText mEdtEmail;
 	EditText mEdtAddress;
 	ImageView mIgvIcon;
+	EditText mEdtbirth;
+	int birthmonth, birthday;
+	boolean ishavebirth;
+	private DBManager dm;
 	//ViewPager mVpgIcon;
 	List<ImageView> image = new ArrayList<ImageView>();
 	int[] iconId = { R.drawable.t1, R.drawable.t2, R.drawable.t3,
@@ -76,6 +85,34 @@ public class AddPeopleActivity extends Activity implements OnClickListener {
 		mIgvIcon = (ImageView) findViewById(R.id.img_show_photo4);
 		mIgvIcon.setOnClickListener(this);
 		mContactsUtil = new ContactsUtil(this);
+		birthmonth = 0;
+		birthday = 0;
+		ishavebirth = false;
+		dm = new DBManager(this);
+		mEdtbirth = (EditText) findViewById(R.id.edt_show_birth);
+		mEdtbirth.setOnClickListener(new View.OnClickListener() {
+
+			@Override
+			public void onClick(View v) {
+				Calendar c = Calendar. getInstance ();
+				new DatePickerDialog(AddPeopleActivity.this, // 建对话（继承类）
+						new DatePickerDialog.OnDateSetListener(){ // 继承监听器(接口)
+							@Override
+							public void onDateSet(DatePicker dp, int year,
+												  int month, int dayOfMonth) {
+								mEdtbirth.setText(year + "年" + (month + 1)
+										+ "月" + dayOfMonth + "日");
+								ishavebirth = true;
+								birthmonth = month + 1;
+								birthday = dayOfMonth;
+							}
+						}
+						, c.get(Calendar. YEAR ) //设置初始日期
+						, c.get(Calendar. MONTH )
+						, c.get(Calendar. DAY_OF_MONTH )).show();
+			}
+		});
+		// mVpgIcon = (ViewPager) findViewById(R.id.vpg_add_contact);
 		// mVpgIcon = (ViewPager) findViewById(R.id.vpg_add_contact);
 
 		for (int i = 0; i < iconId.length; i++) {
@@ -225,6 +262,13 @@ public class AddPeopleActivity extends Activity implements OnClickListener {
 		BitmapDrawable bd = (BitmapDrawable) drawable;
 		Bitmap bitmap = bd.getBitmap();
 		mContactsUtil.insert(correctNmae, phone, email, address, bitmap);
+
+		if(ishavebirth == true) {
+			List<FestivalInfo> persons = new ArrayList<>();
+			FestivalInfo p1 = new FestivalInfo(birthmonth,birthday,1,name);
+			persons.add(p1);
+			dm.add(persons);
+		}
 		//界面实时更新
 		ContentResolver mContentResolver = mContactsUtil.getmContentResolver();
 		Cursor contactsCursor = mContentResolver.query(
