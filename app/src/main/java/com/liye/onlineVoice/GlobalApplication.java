@@ -97,6 +97,15 @@ public class GlobalApplication extends Application {
         String res =db.getString("phone","");
         return res;
     }
+    public static ContactInfo findContactInfo(String phone){
+        if(phone==null) return  null;
+        phone = phone.replace(" ","");
+        for (int i = 0; i< contacts.size(); i++){
+            if(contacts.get(i)!=null && contacts.get(i).getPhone() != null &&  phone.equals( contacts.get(i).getPhone().toString().replace(" ","" ) ) ) return contacts.get(i);
+
+        }
+        return null;
+    }
     public static void showMessage( String msg){
         Message m = handler.obtainMessage();
         m.arg1=1;

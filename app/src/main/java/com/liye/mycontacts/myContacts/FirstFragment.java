@@ -246,11 +246,12 @@ public class FirstFragment extends android.support.v4.app.Fragment {
 
                     return ;
                 }else{
+                    /////////////////////////////////////////////////////////////////////////////////////////////////////
                     Intent intent = new Intent(mContext,
                             AddPeopleActivity.class);
-                    Log.d("infooo1",scanResult);
                     intent.putExtra("contactInfo",scanResult);
-                    startActivity(intent);
+                    startActivityForResult(intent, GlobalApplication.ADD_CONTACT_START);
+
                 }
             } catch (JSONException e) {
                 e.printStackTrace();
@@ -258,7 +259,7 @@ public class FirstFragment extends android.support.v4.app.Fragment {
             }
         }
         else if(requestCode == GlobalApplication.ADD_CONTACT_START && resultCode == GlobalApplication.ADD_CONTACT_END) {
-            Toast.makeText(mContext,"add返回mainactivity",Toast.LENGTH_LONG).show();
+//            Toast.makeText(mContext,"add返回mainactivity",Toast.LENGTH_LONG).show();
 
             //contacts.add(newContact);
             Collections.sort(contacts, new PinyinComparator());
@@ -268,7 +269,7 @@ public class FirstFragment extends android.support.v4.app.Fragment {
             mList.setAdapter(adapter);
         }
         else if (requestCode == GlobalApplication.DELETE_CONTACT_START && resultCode == GlobalApplication.DELETE_CONTACT_END) {
-            Toast.makeText(mContext,"delete返回mainactivity",Toast.LENGTH_LONG).show();
+//            Toast.makeText(mContext,"delete返回mainactivity",Toast.LENGTH_LONG).show();
             contacts = GlobalApplication.getContacts();
             adapter.notifyDataSetChanged();
             mList.setAdapter(adapter);
