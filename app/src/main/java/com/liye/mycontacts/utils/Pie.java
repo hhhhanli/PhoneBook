@@ -5,12 +5,16 @@ package com.liye.mycontacts.utils;
  */
 
 import android.app.Activity;
+import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.view.View;
+import android.widget.Button;
 import android.widget.Toast;
 
 import com.liye.mycontacts.R;
+import com.liye.mycontacts.myContacts.MainActivity;
 import com.liye.onlineVoice.GlobalApplication;
 
 import java.util.ArrayList;
@@ -37,6 +41,7 @@ public class Pie extends Activity {
     //数据
     PieChartData pieChardata;
     List<SliceValue> values = new ArrayList<SliceValue>();
+    Button breturn;
     //定义数据，实际情况肯定不是这样写固定值的
 
 //    private int[] colorData = {Color.parseColor("#ec063d"),
@@ -70,6 +75,15 @@ public class Pie extends Activity {
                 else {
                     return 0;
                 }
+            }
+        });
+        breturn = (Button)findViewById(R.id.shanxing_return);
+        breturn.setOnClickListener(new View.OnClickListener() {
+
+            @Override
+            public void onClick(View v) {
+                Intent intent =new Intent(Pie.this, MainActivity.class);
+                startActivity(intent);
             }
         });
         for (Map.Entry<String, Long> key: list) {

@@ -5,13 +5,16 @@ package com.liye.mycontacts.utils;
  */
 
 import android.app.Activity;
+import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.Interpolator;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
+import android.widget.Button;
 
 import com.liye.mycontacts.R;
+import com.liye.mycontacts.myContacts.MainActivity;
 import com.liye.onlineVoice.GlobalApplication;
 
 import java.util.ArrayList;
@@ -45,6 +48,7 @@ public class Myline extends Activity {
     private ArrayList<PointValue> mPointValues = new ArrayList<PointValue>();
     private ArrayList<AxisValue> mAxisXValues = new ArrayList<AxisValue>();
     Map<String, Integer> myinfo = new HashMap<String, Integer>();
+    Button breturn;
 
 
 
@@ -57,6 +61,15 @@ public class Myline extends Activity {
         GlobalApplication data = (GlobalApplication)getApplication();
         myinfo = data.getsta1();
         List<Map.Entry<String, Integer>> list = new ArrayList<Map.Entry<String, Integer>>(myinfo.entrySet());
+        breturn = (Button)findViewById(R.id.zhexian_return);
+        breturn.setOnClickListener(new View.OnClickListener() {
+
+            @Override
+            public void onClick(View v) {
+                    Intent intent =new Intent(Myline.this, MainActivity.class);
+                    startActivity(intent);
+            }
+        });
 
         Collections.sort(list, new Comparator<Map.Entry<String, Integer>>() {
             @Override
