@@ -335,6 +335,9 @@ public class ContactsUtil {
 				getContactAddress(rawContactId, contact);
 			//	Log.e(this + "", "contact=" + contact);
 				// 将联系人添加到集合里
+				//if(contact.getSortFirstWord().indexOf(0) < 'A' || contact.getSortFirstWord().indexOf(0) > 'z') {
+				//	continue;
+				//}
 				contacts.add(contact);
 			}
 

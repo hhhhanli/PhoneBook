@@ -256,6 +256,8 @@ public class FirstFragment extends android.support.v4.app.Fragment {
             }
         }
         else if(requestCode == GlobalApplication.ADD_CONTACT_START && resultCode == GlobalApplication.ADD_CONTACT_END) {
+
+            Toast.makeText(mContext,"添加成功",Toast.LENGTH_SHORT).show();
 //            Toast.makeText(mContext,"add返回mainactivity",Toast.LENGTH_LONG).show();
 
             //contacts.add(newContact);
@@ -266,6 +268,7 @@ public class FirstFragment extends android.support.v4.app.Fragment {
             mList.setAdapter(adapter);
         }
         else if (requestCode == GlobalApplication.DELETE_CONTACT_START && resultCode == GlobalApplication.DELETE_CONTACT_END) {
+            Toast.makeText(mContext,"删除成功",Toast.LENGTH_SHORT).show();
 //            Toast.makeText(mContext,"delete返回mainactivity",Toast.LENGTH_LONG).show();
             contacts = GlobalApplication.getContacts();
             adapter.notifyDataSetChanged();

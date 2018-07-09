@@ -81,6 +81,17 @@ public class GlobalApplication extends Application {
             }
         }
     }
+    public static String correctName(String name) {
+        String result = name;
+        //去除空格
+        result.trim();
+        /*for(int i = 0; i < name.length(); i++) {
+            if(name.indexOf(i) >= 'A' && name.indexOf(i) <= 'z') {
+                result = name.substring(i);
+            }
+        }*/
+        return result;
+    }
     public static Context getContext(){
         return context;
     }

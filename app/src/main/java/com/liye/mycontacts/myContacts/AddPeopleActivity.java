@@ -28,6 +28,7 @@ import com.liye.mycontacts.R;
 import com.liye.mycontacts.adapter.IconPagerAdapter;
 import com.liye.mycontacts.listener.MyOnclickListener;
 import com.liye.mycontacts.menu.TelephoneActivity;
+import com.liye.mycontacts.utils.CharacterParser;
 import com.liye.mycontacts.utils.CommonUtil;
 import com.liye.mycontacts.utils.ContactInfo;
 import com.liye.mycontacts.utils.ContactsUtil;
@@ -173,10 +174,27 @@ public class AddPeopleActivity extends Activity implements OnClickListener {
 				break;
 
 			case R.id.btn_save:
+				boolean flag = true;
 				// 保存
-				if (null == mEdtName) {
+				if (mEdtName == null) {
 					Toast.makeText(this, "名字不能为空", Toast.LENGTH_LONG).show();
-				} else {
+					flag = false;
+				}
+				String myName = CharacterParser.getInstance().getSelling(mEdtName.getText().toString());
+				String firstWord = myName.substring(0, 1).toString().toUpperCase();
+				if (!firstWord.matches("[A-Z]")) {
+					Toast.makeText(this, "请以字母开头", Toast.LENGTH_LONG).show();
+					flag = false;
+				}
+				String phoneNumber = mEdtPhone.getText().toString();
+				for(int i = 0; i < phoneNumber.length(); i++) {
+					if(phoneNumber.charAt(i) < '0' || phoneNumber.charAt(i) > '9') {
+						flag = false;
+						Toast.makeText(this, "号码不能含有非数字", Toast.LENGTH_LONG).show();
+						break;
+					}
+				}
+				if(flag) {
 					addNewContact();
 
 					//Intent intent = new Intent(AddPeopleActivity.this, MainActivity.class);
@@ -195,13 +213,14 @@ public class AddPeopleActivity extends Activity implements OnClickListener {
 
 	private void addNewContact() {
 		String name = mEdtName.getText().toString();
+		String correctNmae = GlobalApplication.correctName(name);
 		String phone = mEdtPhone.getText().toString();
 		String email = mEdtEmail.getText().toString();
 		String address = mEdtAddress.getText().toString();
 		Drawable drawable = mIgvIcon.getDrawable();
 		BitmapDrawable bd = (BitmapDrawable) drawable;
 		Bitmap bitmap = bd.getBitmap();
-		mContactsUtil.insert(name, phone, email, address, bitmap);
+		mContactsUtil.insert(correctNmae, phone, email, address, bitmap);
 		//界面实时更新
 		ContentResolver mContentResolver = mContactsUtil.getmContentResolver();
 		Cursor contactsCursor = mContentResolver.query(
