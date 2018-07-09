@@ -30,7 +30,7 @@
     <application
         android:name="com.liye.onlineVoice.GlobalApplication"
         android:allowBackup="true"
-        android:icon="@drawable/ic_avatar"
+        android:icon="@drawable/telephone"
         android:label="电话薄"
         android:supportsRtl="true"
         android:theme="@android:style/Theme.Holo.Light.NoActionBar.Fullscreen">
