@@ -54,6 +54,7 @@ public class FirstFragment extends android.support.v4.app.Fragment {
     /*************zjt:sidebar*************/
     private SideBar sideBar;
     private TextView dialog;
+    public static final int ADD_CONTACT = 100;
     /*************zjt:sidebar*************/
     //侧滑布局对象，用于通过手指滑动将左侧的菜单布局进行显示或隐藏。
     private ImageView ImageView_menu;
@@ -74,7 +75,6 @@ public class FirstFragment extends android.support.v4.app.Fragment {
 
     List<ContactInfo> contacts;
 
-    ContactsUtil mContactsUtil;
     public DrawerLayout mDrawerLayout;
     public ContactAdapter adapter;
 
@@ -108,8 +108,7 @@ public class FirstFragment extends android.support.v4.app.Fragment {
     public View onCreateView(LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
         final View view = inflater.inflate(R.layout.fragment_one, null);
-        mContactsUtil = new ContactsUtil(mContext);
-        contacts = mContactsUtil.select();
+        contacts = GlobalApplication.getContacts();
         Collections.sort(contacts, new PinyinComparator());
         adapter = new ContactAdapter(this.mContext, contacts);
         mList = (ListView) view.findViewById(R.id.lst_show_contact);
@@ -257,6 +256,22 @@ public class FirstFragment extends android.support.v4.app.Fragment {
                 e.printStackTrace();
                 Toast.makeText(mContext,"二维码名片格式错误",Toast.LENGTH_SHORT).show();
             }
+        }
+        else if(requestCode == GlobalApplication.ADD_CONTACT_START && resultCode == GlobalApplication.ADD_CONTACT_END) {
+            Toast.makeText(mContext,"add返回mainactivity",Toast.LENGTH_LONG).show();
+
+            //contacts.add(newContact);
+            Collections.sort(contacts, new PinyinComparator());
+
+            //adapter.addContact(newContact);
+            adapter.notifyDataSetChanged();
+            mList.setAdapter(adapter);
+        }
+        else if (requestCode == GlobalApplication.DELETE_CONTACT_START && resultCode == GlobalApplication.DELETE_CONTACT_END) {
+            Toast.makeText(mContext,"delete返回mainactivity",Toast.LENGTH_LONG).show();
+            contacts = GlobalApplication.getContacts();
+            adapter.notifyDataSetChanged();
+            mList.setAdapter(adapter);
         }
     }
 }

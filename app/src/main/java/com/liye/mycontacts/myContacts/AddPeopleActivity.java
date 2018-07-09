@@ -3,13 +3,16 @@ package com.liye.mycontacts.myContacts;
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.app.AlertDialog.Builder;
+import android.content.ContentResolver;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.database.Cursor;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
+import android.provider.ContactsContract;
 import android.support.v4.view.ViewPager;
 import android.support.v4.view.ViewPager.OnPageChangeListener;
 import android.util.Log;
@@ -23,9 +26,12 @@ import android.widget.Toast;
 
 import com.liye.mycontacts.R;
 import com.liye.mycontacts.adapter.IconPagerAdapter;
+import com.liye.mycontacts.listener.MyOnclickListener;
 import com.liye.mycontacts.menu.TelephoneActivity;
 import com.liye.mycontacts.utils.CommonUtil;
+import com.liye.mycontacts.utils.ContactInfo;
 import com.liye.mycontacts.utils.ContactsUtil;
+import com.liye.onlineVoice.GlobalApplication;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -172,9 +178,15 @@ public class AddPeopleActivity extends Activity implements OnClickListener {
 					Toast.makeText(this, "名字不能为空", Toast.LENGTH_LONG).show();
 				} else {
 					addNewContact();
-					Intent intent = new Intent(AddPeopleActivity.this,
-							MainActivity.class);
-					startActivity(intent);
+
+					//Intent intent = new Intent(AddPeopleActivity.this, MainActivity.class);
+					Intent intent = new Intent();
+					//startActivity(intent);
+					/*intent.putExtra("name",mEdtName.getText().toString());
+					intent.putExtra("phone",mEdtPhone.getText().toString());
+					intent.putExtra("email",mEdtEmail.getText().toString());
+					intent.putExtra("address",mEdtAddress.getText().toString());*/
+					setResult(GlobalApplication.ADD_CONTACT_END, intent);
 					finish();
 				}
 				break;
@@ -190,6 +202,44 @@ public class AddPeopleActivity extends Activity implements OnClickListener {
 		BitmapDrawable bd = (BitmapDrawable) drawable;
 		Bitmap bitmap = bd.getBitmap();
 		mContactsUtil.insert(name, phone, email, address, bitmap);
+		//界面实时更新
+		ContentResolver mContentResolver = mContactsUtil.getmContentResolver();
+		Cursor contactsCursor = mContentResolver.query(
+				ContactsContract.Contacts.CONTENT_URI, null, null, null, null);
+		for (int i = contactsCursor.getCount()-1; i < contactsCursor.getCount(); i++) {
+			contactsCursor.moveToPosition(i);
+			// 联系人的id
+			int contactId = contactsCursor.getInt(contactsCursor
+					.getColumnIndex(ContactsContract.Contacts._ID));
+			Cursor rawCuror = mContentResolver.query(
+					ContactsContract.RawContacts.CONTENT_URI, null,
+					ContactsContract.RawContacts.CONTACT_ID + "=?", new String[]{contactId
+							+ ""}, null);
+
+			for (int j = 0; j < rawCuror.getCount(); j++) {
+				rawCuror.moveToPosition(j);
+				int rawContactId = rawCuror.getInt(rawCuror
+						.getColumnIndex(ContactsContract.RawContacts._ID));
+				ContactInfo contact = new ContactInfo();
+				contact.setContactId(contactId);
+				contact.setRawContactId(rawContactId);
+				// 获取联系人的头像
+				mContactsUtil.getIconByContactId(contactId, contact);
+				// 根据id获取联系人的名字
+				mContactsUtil.getContactName(rawContactId, contact);
+				// 获取手机号码
+				mContactsUtil.getContactPhone(rawContactId, contact);
+				// 获取邮箱
+				mContactsUtil.getContactEamil(rawContactId, contact);
+				// 获取地址
+				mContactsUtil.getContactAddress(rawContactId, contact);
+				//	Log.e(this + "", "contact=" + contact);
+				// 将联系人添加到集合里
+				GlobalApplication.addContacts(contact);
+			}
+			rawCuror.close();
+		}
+		contactsCursor.close();
 	}
 
 }

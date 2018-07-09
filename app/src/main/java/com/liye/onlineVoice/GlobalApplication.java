@@ -10,8 +10,13 @@ import android.os.Message;
 import android.widget.Toast;
 
 import com.liye.mycontacts.R;
+import com.liye.mycontacts.utils.CallLogInfo;
+import com.liye.mycontacts.utils.ContactInfo;
+import com.liye.mycontacts.utils.ContactsMsgUtils;
+import com.liye.mycontacts.utils.ContactsUtil;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 /**
  * Created by zhanh on 2018/7/7.
@@ -25,6 +30,16 @@ public class GlobalApplication extends Application {
     private static int streamId;
     private static Handler handler ;
     public   static boolean isInComing;
+
+    private static List<CallLogInfo> infos;
+    private static ContactsMsgUtils contactsMsgUtils;
+    private static ContactsUtil mContactsUtil;
+    private static List<ContactInfo> contacts;
+
+    public static final int ADD_CONTACT_START = 100;
+    public static final int ADD_CONTACT_END = 101;
+    public static final int DELETE_CONTACT_START = 103;
+    public static final int DELETE_CONTACT_END = 104;
     @Override
     public void onCreate() {
         isInComing = false;
@@ -40,6 +55,31 @@ public class GlobalApplication extends Application {
                 Toast.makeText(context,"提示:"+msg.obj,Toast.LENGTH_SHORT).show();
             }
         };
+        contactsMsgUtils = new ContactsMsgUtils(this);
+        mContactsUtil = new ContactsUtil(this);
+    }
+
+    public static void inital(){
+        infos = contactsMsgUtils.select();
+        contacts = mContactsUtil.select();
+    }
+
+    public static List<CallLogInfo> getInfos() {
+        return infos;
+    }
+
+    public static List<ContactInfo> getContacts() {
+        return contacts;
+    }
+    public static void addContacts(ContactInfo newContact) {
+        contacts.add(newContact);
+    }
+    public static void deleteContact(ContactInfo newContact) {
+        for (int i = 0; i < contacts.size();i++) {
+            if(contacts.get(i).getContactId() == newContact.getContactId()) {
+                contacts.remove(i);
+            }
+        }
     }
     public static Context getContext(){
         return context;
@@ -49,6 +89,9 @@ public class GlobalApplication extends Application {
         SharedPreferences.Editor editor = db.edit();
         editor.putString("phone",info);
         editor.commit();
+    }
+    public static ContactsUtil getmContactsUtil() {
+        return mContactsUtil;
     }
     public static String getLoginInfo(){
         String res =db.getString("phone","");

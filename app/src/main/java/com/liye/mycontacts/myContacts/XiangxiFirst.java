@@ -81,6 +81,7 @@ public class XiangxiFirst extends android.support.v4.app.Fragment implements Vie
 
         mCallPhone = (TextView) view.findViewById(R.id.callPhone);
         mCallPhone.setOnClickListener(this);
+
         return view;
     }
     @Override
@@ -103,8 +104,9 @@ public class XiangxiFirst extends android.support.v4.app.Fragment implements Vie
                             public void onClick(DialogInterface dialog, int which) {
 
                                 mContactsUtil.delete(contactInfo.getContactId());
-                                Intent delete = new Intent(mContext,
-                                        TelephoneActivity.class);
+                                GlobalApplication.deleteContact(contactInfo);
+                                Intent delete = new Intent(mContext,MainActivity.class);
+                                //Intent intent = new Intent();
                                 startActivity(delete);
                             }
                         }
