@@ -229,7 +229,7 @@ public class AddPeopleActivity extends Activity implements OnClickListener {
 
 				String phoneNumber = mEdtPhone.getText().toString();
 				for(int i = 0; i < phoneNumber.length(); i++) {
-					if(phoneNumber.charAt(i) < '0' || phoneNumber.charAt(i) > '9') {
+					if((phoneNumber.charAt(i) < '0' || phoneNumber.charAt(i) > '9') && phoneNumber.charAt(i) != ' ') {
 						flag = false;
 						Toast.makeText(this, "号码不能含有非数字", Toast.LENGTH_LONG).show();
 						break;
