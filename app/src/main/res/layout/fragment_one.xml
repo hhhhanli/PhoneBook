@@ -17,7 +17,7 @@
             android:id="@+id/hh">
             <com.liye.mycontacts.myContacts.SearchEditText
                 android:id="@+id/edt_search"
-                android:layout_width="230dp"
+                android:layout_width="210dp"
                 android:layout_height="wrap_content"
                 android:background="@drawable/input"
                 android:layout_marginLeft="25dp"
@@ -27,11 +27,12 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:id="@+id/wangluoo"
+                android:textSize="15dp"
                 android:layout_marginTop="0dp"
-                android:text="网络电话: "/>
+                android:text="网络电话:  "/>
             <Button
-                android:layout_width="20dp"
-                android:layout_height="20dp"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
                 android:layout_marginRight="25dp"
                 android:id="@+id/online_voice_switch"
                 android:background="@color/blue"/>
