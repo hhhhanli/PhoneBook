@@ -43,6 +43,13 @@
         android:id="@+id/voice_status"
         android:textColor="@color/blue"
         />
-
+    <RelativeLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+            <Button
+                android:layout_width="match_parent"
+                android:layout_height="150dp"
+                android:background="@color/white"/>
+    </RelativeLayout>
 
 </LinearLayout>
