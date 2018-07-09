@@ -10,12 +10,14 @@ import android.view.Window;
 import android.view.WindowManager;
 
 import com.liye.mycontacts.R;
+import com.liye.onlineVoice.GlobalApplication;
 
 /**
  * Created by dell-pc on 2018.7.7.
  */
 
 public class WelcomeActivity extends Activity {
+    public static final int LOAD_FINISH = 0X01;
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -25,7 +27,13 @@ public class WelcomeActivity extends Activity {
         /**标题是属于View的，所以窗口所有的修饰部分被隐藏后标题依然有效,需要去掉标题**/
         requestWindowFeature(Window.FEATURE_NO_TITLE);
         setContentView(R.layout.activity_welcome);
-        handler.sendEmptyMessageDelayed(0,3000);
+        new Thread() {
+            public void run() {
+                GlobalApplication.inital();
+                handler.sendEmptyMessage(LOAD_FINISH);
+            }
+        }.start();
+        //handler.sendEmptyMessageDelayed(0,3000);
     }
 
     private Handler handler = new Handler() {

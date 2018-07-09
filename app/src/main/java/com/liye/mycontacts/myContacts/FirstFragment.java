@@ -74,7 +74,6 @@ public class FirstFragment extends android.support.v4.app.Fragment {
 
     List<ContactInfo> contacts;
 
-    ContactsUtil mContactsUtil;
     public DrawerLayout mDrawerLayout;
     public ContactAdapter adapter;
 
@@ -108,8 +107,7 @@ public class FirstFragment extends android.support.v4.app.Fragment {
     public View onCreateView(LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
         final View view = inflater.inflate(R.layout.fragment_one, null);
-        mContactsUtil = new ContactsUtil(mContext);
-        contacts = mContactsUtil.select();
+        contacts = GlobalApplication.getContacts();
         Collections.sort(contacts, new PinyinComparator());
         adapter = new ContactAdapter(this.mContext, contacts);
         mList = (ListView) view.findViewById(R.id.lst_show_contact);
