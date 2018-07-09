@@ -32,6 +32,7 @@
             android:layout_height="wrap_content"
             android:hint="        Name"
             android:textSize="20dp"
+            android:text=""
             android:paddingTop="40dp" />
     </LinearLayout>
 

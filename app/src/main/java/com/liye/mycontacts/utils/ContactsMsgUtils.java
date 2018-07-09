@@ -7,6 +7,7 @@ import android.net.Uri;
 import android.provider.CallLog;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 /**
@@ -45,6 +46,7 @@ public class ContactsMsgUtils {
             infos.add(new CallLogInfo(number, date, type, name, calltime));
         }
         cursor.close();
+        Collections.sort(infos, new TimeComparator());
         return infos;
     }
 
@@ -65,6 +67,7 @@ public class ContactsMsgUtils {
             }
         }
         cursor.close();
+        Collections.sort(infos, new TimeComparator());
         return infos;
     }
 }

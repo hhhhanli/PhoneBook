@@ -7,6 +7,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.liye.mycontacts.R;
@@ -53,6 +54,7 @@ public class CalllogAdapter extends BaseAdapter {
         TextView tv_duration = (TextView) view.findViewById(R.id.tv_duration);
         TextView tv_date = (TextView) view.findViewById(R.id.tv_date);
         TextView tv_type = (TextView) view.findViewById(R.id.tv_type);
+        ImageView tv_photo = (ImageView)  view.findViewById(R.id.tv_photo);
         CallLogInfo info = infos.get(position);
         if(info.name == null) {
             tv_name.setText(info.number);
@@ -70,14 +72,17 @@ public class CalllogAdapter extends BaseAdapter {
         switch (info.type) {
             case CallLog.Calls.INCOMING_TYPE:
                 typeStr = "来电";
-                color = Color.BLUE;
+                color = Color.GRAY;
+                tv_photo.setImageResource(R.drawable.callin);
                 break;
             case CallLog.Calls.OUTGOING_TYPE:
                 typeStr = "去电";
-                color = Color.GREEN;
+                tv_photo.setImageResource(R.drawable.callout);
+                color = Color.GRAY;
                 break;
             case CallLog.Calls.MISSED_TYPE:
                 typeStr = "未接";
+                tv_photo.setImageResource(R.drawable.callin);
                 color = Color.RED;
                 break;
 

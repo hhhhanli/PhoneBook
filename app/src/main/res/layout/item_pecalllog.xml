@@ -5,6 +5,13 @@
     android:orientation="vertical"
     android:padding="10dp" >
 
+    <ImageView
+        android:layout_marginTop="5dp"
+        android:layout_width="10dp"
+        android:layout_height="10dp"
+        android:id="@+id/ptv_photo"
+        />
+
     <TextView
         android:id="@+id/ptv_date"
         android:layout_width="wrap_content"

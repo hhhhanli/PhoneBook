@@ -19,6 +19,11 @@ public class CallLogInfo {
         this.name = name;
         this.calltime = calltime;
     }
+
+    public long getDate() {
+        return date;
+    }
+
     public CallLogInfo() {
         super();
     }

@@ -22,6 +22,7 @@ import android.widget.Toast;
 import com.liye.mycontacts.R;
 import com.liye.mycontacts.adapter.IconPagerAdapter;
 import com.liye.mycontacts.menu.TelephoneActivity;
+import com.liye.mycontacts.utils.CharacterParser;
 import com.liye.mycontacts.utils.CommonUtil;
 import com.liye.mycontacts.utils.ContactInfo;
 import com.liye.mycontacts.utils.ContactsUtil;
@@ -155,9 +156,11 @@ public class EditContactActivity extends Activity implements OnClickListener {
 
 				break;
 			case R.id.btn_cancel1:
-				/*Intent cancel = new Intent(EditContactActivity.this,
-						TelephoneActivity.class);
-				startActivity(cancel);*/
+
+				Intent cancel = new Intent(EditContactActivity.this,
+						MainActivity.class);
+				startActivity(cancel);
+
 				finish();
 
 				break;
@@ -165,14 +168,19 @@ public class EditContactActivity extends Activity implements OnClickListener {
 			case R.id.btn_save1:
 				boolean flag = true;
 				// 保存
-				if (mEdtName == null) {
+				String ename = mEdtName.getText().toString();
+				if (ename.length() == 0) {
 					Toast.makeText(this, "名字不能为空", Toast.LENGTH_LONG).show();
 					flag = false;
+				} else {
+					String myName = CharacterParser.getInstance().getSelling(mEdtName.getText().toString());
+					String firstWord = myName.substring(0, 1).toString().toUpperCase();
+					if (!firstWord.matches("[A-Z]")) {
+						Toast.makeText(this, "请以字母开头", Toast.LENGTH_LONG).show();
+						flag = false;
+					}
 				}
-				if (mEdtName.getText().toString().charAt(0) < 'A' || mEdtName.getText().toString().charAt(0) > 'z') {
-					Toast.makeText(this, "请以字母开头", Toast.LENGTH_LONG).show();
-					flag = false;
-				}
+
 				String phoneNumber = mEdtPhone.getText().toString();
 				for(int i = 0; i < phoneNumber.length(); i++) {
 					if(phoneNumber.charAt(i) < '0' || phoneNumber.charAt(i) > '9') {
