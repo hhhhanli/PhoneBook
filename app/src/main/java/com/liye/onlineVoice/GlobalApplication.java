@@ -36,6 +36,10 @@ public class GlobalApplication extends Application {
     private static ContactsUtil mContactsUtil;
     private static List<ContactInfo> contacts;
 
+    public static final int ADD_CONTACT_START = 100;
+    public static final int ADD_CONTACT_END = 101;
+    public static final int DELETE_CONTACT_START = 103;
+    public static final int DELETE_CONTACT_END = 104;
     @Override
     public void onCreate() {
         isInComing = false;
@@ -66,6 +70,9 @@ public class GlobalApplication extends Application {
 
     public static List<ContactInfo> getContacts() {
         return contacts;
+    }
+    public static void addContacts(ContactInfo newContact) {
+        contacts.add(newContact);
     }
 
     public static Context getContext(){

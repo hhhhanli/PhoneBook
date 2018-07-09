@@ -25,7 +25,10 @@ public class ContactAdapter extends BaseAdapter {
         this.contacts = contacts;
 
     }
-
+    public void addContact(ContactInfo newContact) {
+        this.contacts.add(newContact);
+        notifyDataSetChanged();
+    }
     @Override
     public int getCount() {
         return contacts.size();
@@ -78,8 +81,7 @@ public class ContactAdapter extends BaseAdapter {
         //        .get(position).getIcon()));
         name.setText(contacts.get(position).getName());
         // Log.e(this + "", "####################");
-        phone.setText(contacts.get(position).getPhone() + "\t   address:"
-                + contacts.get(position).getAddress());
+        phone.setText(contacts.get(position).getPhone());
 
 //		 email.setText(contacts.get(position).getEmail());
 //		 address.setText(contacts.get(position).getAddress());

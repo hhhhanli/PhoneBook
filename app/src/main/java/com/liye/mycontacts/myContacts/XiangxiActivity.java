@@ -123,8 +123,9 @@ public class XiangxiActivity extends ActionBarActivity implements OnClickListene
 
 								mContactsUtil.delete(contactInfo.getContactId());
 								Intent delete = new Intent(XiangxiActivity.this,
-										TelephoneActivity.class);
+										MainActivity.class);
 								startActivity(delete);
+								//startActivityForResult(delete, GlobalApplication.DELETE_CONTACT_START);
 								finish();
 							}
 						}

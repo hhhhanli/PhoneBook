@@ -23,9 +23,11 @@ import android.widget.Toast;
 
 import com.liye.mycontacts.R;
 import com.liye.mycontacts.adapter.IconPagerAdapter;
+import com.liye.mycontacts.listener.MyOnclickListener;
 import com.liye.mycontacts.menu.TelephoneActivity;
 import com.liye.mycontacts.utils.CommonUtil;
 import com.liye.mycontacts.utils.ContactsUtil;
+import com.liye.onlineVoice.GlobalApplication;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -172,9 +174,14 @@ public class AddPeopleActivity extends Activity implements OnClickListener {
 					Toast.makeText(this, "名字不能为空", Toast.LENGTH_LONG).show();
 				} else {
 					addNewContact();
-					Intent intent = new Intent(AddPeopleActivity.this,
-							MainActivity.class);
+					Intent intent = new Intent(AddPeopleActivity.this, MainActivity.class);
+					//Intent intent = new Intent();
 					startActivity(intent);
+					/*intent.putExtra("name",mEdtName.getText().toString());
+					intent.putExtra("phone",mEdtPhone.getText().toString());
+					intent.putExtra("email",mEdtEmail.getText().toString());
+					intent.putExtra("address",mEdtAddress.getText().toString());
+					setResult(GlobalApplication.ADD_CONTACT_END, intent);*/
 					finish();
 				}
 				break;

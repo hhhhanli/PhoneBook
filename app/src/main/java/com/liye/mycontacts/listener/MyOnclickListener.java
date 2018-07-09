@@ -27,7 +27,6 @@ import com.liye.mycontacts.myContacts.MainActivity;
 点击事件
  */
 public class MyOnclickListener  implements View.OnClickListener{
-
     private FirstFragment fragment;
     public MyOnclickListener(FirstFragment fragment) {
         this.fragment = fragment;
@@ -43,6 +42,7 @@ public class MyOnclickListener  implements View.OnClickListener{
                 Intent intent = new Intent(this.fragment.getCon(),
                         AddPeopleActivity.class);
                 this.fragment.getCon().startActivity(intent);
+                //fragment.startActivityForResult(intent, GlobalApplication.ADD_CONTACT_START);
                 break;
             //拨打电话的按钮
             case R.id.txt_call_phone:
