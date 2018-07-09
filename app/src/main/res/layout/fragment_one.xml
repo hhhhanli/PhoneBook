@@ -7,30 +7,42 @@
 
     <RelativeLayout
         android:id="@+id/content"
-        android:layout_width="fill_parent"
-        android:layout_height="fill_parent"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
         android:layout_marginTop="0dp">
-
-        <com.liye.mycontacts.myContacts.SearchEditText
-            android:id="@+id/edt_search"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:background="@drawable/input"
-            android:layout_marginLeft="25dp"
-            android:hint="搜索"
-            />
-
-        <Switch
+        <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_alignRight="@id/edt_search"
-            android:layout_marginTop="20dp"
-            android:id="@+id/online_voice_switch" />
+            android:orientation="horizontal"
+            android:id="@+id/hh">
+            <com.liye.mycontacts.myContacts.SearchEditText
+                android:id="@+id/edt_search"
+                android:layout_width="230dp"
+                android:layout_height="wrap_content"
+                android:background="@drawable/input"
+                android:layout_marginLeft="25dp"
+                android:hint="搜索"
+                />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/wangluoo"
+                android:layout_marginTop="0dp"
+                android:text="网络电话: "/>
+            <Button
+                android:layout_width="20dp"
+                android:layout_height="20dp"
+                android:layout_marginRight="25dp"
+                android:id="@+id/online_voice_switch"
+                android:background="@color/blue"/>
+        </LinearLayout>
+
+
 
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_below="@+id/edt_search"
+            android:layout_below="@+id/hh"
             >
             <ListView
                 android:id="@+id/lst_show_contact"

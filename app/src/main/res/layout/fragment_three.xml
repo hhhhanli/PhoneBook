@@ -68,7 +68,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:id="@+id/from_time"
-                android:hint="2018.10.10"
+                android:hint="请输入日期"
                 android:gravity="center"
                 android:textColor="@color/white"
                 android:textColorHint="@color/white"
@@ -93,7 +93,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:id="@+id/to_time"
-                android:hint="2018.10.10"
+                android:hint="请输入日期"
                 android:gravity="center"
                 android:textColor="@color/white"
                 android:textColorHint="@color/white"
@@ -108,8 +108,7 @@
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:gravity="center"
-            android:layout_marginLeft="-70dp"
+            android:layout_marginLeft="60dp"
             android:theme="@style/MyEditText"
             android:layout_marginTop="45dp"
             >
