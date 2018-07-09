@@ -176,16 +176,20 @@ public class AddPeopleActivity extends Activity implements OnClickListener {
 			case R.id.btn_save:
 				boolean flag = true;
 				// 保存
-				if (mEdtName == null) {
+				String ename = mEdtName.getText().toString();
+				if (ename.length() == 0) {
 					Toast.makeText(this, "名字不能为空", Toast.LENGTH_LONG).show();
 					flag = false;
 				}
-				String myName = CharacterParser.getInstance().getSelling(mEdtName.getText().toString());
-				String firstWord = myName.substring(0, 1).toString().toUpperCase();
-				if (!firstWord.matches("[A-Z]")) {
-					Toast.makeText(this, "请以字母开头", Toast.LENGTH_LONG).show();
-					flag = false;
+				else {
+					String myName = CharacterParser.getInstance().getSelling(mEdtName.getText().toString());
+					String firstWord = myName.substring(0, 1).toString().toUpperCase();
+					if (!firstWord.matches("[A-Z]")) {
+						Toast.makeText(this, "请以字母开头", Toast.LENGTH_LONG).show();
+						flag = false;
+					}
 				}
+
 				String phoneNumber = mEdtPhone.getText().toString();
 				for(int i = 0; i < phoneNumber.length(); i++) {
 					if(phoneNumber.charAt(i) < '0' || phoneNumber.charAt(i) > '9') {
