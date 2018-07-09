@@ -54,14 +54,14 @@
             android:layout_width="250dp"
             android:layout_height="250dp"
             android:src="@mipmap/ic_launcher"
-            android:layout_marginTop="-10dp"
+            android:layout_marginTop="0dp"
             android:layout_below="@+id/QR_code_profile" />
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"
-            android:layout_marginTop="-5dp"
+            android:layout_marginTop="0dp"
             android:text="扫一扫上面的二维码图案，加我名片"
             android:textSize="10dp" />
     </LinearLayout>

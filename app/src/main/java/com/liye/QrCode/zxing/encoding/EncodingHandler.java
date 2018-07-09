@@ -26,7 +26,7 @@ public final class EncodingHandler {
 		Hashtable<EncodeHintType, String> hints = new Hashtable<EncodeHintType, String>();
         hints.put(EncodeHintType.CHARACTER_SET, "utf-8"); 
 		BitMatrix matrix = new MultiFormatWriter().encode(str,
-				BarcodeFormat.QR_CODE, widthAndHeight, widthAndHeight);
+				BarcodeFormat.QR_CODE, widthAndHeight, widthAndHeight,hints);
 		int width = matrix.getWidth();
 		int height = matrix.getHeight();
 		int[] pixels = new int[width * height];
@@ -53,8 +53,8 @@ public final class EncodingHandler {
 	 * @param logoBm    logoBm
 	 * @return 二维码
 	 */
-	public static Bitmap createQRCode(String content, int widthPix, int heightPix, Bitmap logoBm) {
-		try {
+	public static Bitmap createQRCode(String content, int widthPix, int heightPix, Bitmap logoBm) throws WriterException {
+//		try {
 			if (content == null || "".equals(content)) {
 				return null;
 			}
@@ -86,10 +86,10 @@ public final class EncodingHandler {
 			}
 			//必须使用compress方法将bitmap保存到文件中再进行读取。直接返回的bitmap是没有任何压缩的，内存消耗巨大！
 			return bitmap;
-		} catch (WriterException e) {
-			e.printStackTrace();
-		}
-		return null;
+//		} catch (WriterException e) {
+//			e.printStackTrace();
+//		}
+//		return null;
 	}
 
 	/**

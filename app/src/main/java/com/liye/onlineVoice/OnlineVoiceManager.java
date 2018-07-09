@@ -164,7 +164,8 @@ public class OnlineVoiceManager {
                 currentCall = incomingCall;
                 currentCall.addCallListener(new SinchCallListener());
 
-                ContactInfo contact = new ContactsUtil(global_context).findContactInfo(currentCall.getRemoteUserId());
+//                ContactInfo contact = new ContactsUtil(global_context).findContactInfo(currentCall.getRemoteUserId());
+                ContactInfo contact = GlobalApplication.findContactInfo(currentCall.getRemoteUserId());
 
                 if(contact != null){
 

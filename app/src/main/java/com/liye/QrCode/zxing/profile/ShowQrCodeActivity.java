@@ -15,6 +15,8 @@ import com.liye.QrCode.zxing.decoding.Intents;
 import com.liye.QrCode.zxing.encoding.EncodingHandler;
 import com.liye.mycontacts.R;
 import com.liye.mycontacts.utils.ContactInfo;
+import com.liye.onlineVoice.GlobalApplication;
+
 import android.view.View.OnClickListener;
 
 /**
@@ -42,7 +44,8 @@ public class ShowQrCodeActivity extends Activity implements OnClickListener{
         comback.setOnClickListener(this);
         Bitmap qr = null;
         try {
-            qr = EncodingHandler.createQRCode(mContactInfo.getJson(),600);
+            qr = EncodingHandler.createQRCode(mContactInfo.getJson(),600,600,mContactInfo.getIcon());
+//            Log.d("yesssss" ,mContactInfo.getJson());
             mQrCode.setImageBitmap(qr);
             mQrProfile.setImageBitmap(mContactInfo.getIcon());
             mQrName.setText(mContactInfo.getName());
